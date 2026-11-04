@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Giovanella Escola Estética Animal">
+  <!-- Favicon provisório com a pegada e as cores da marca.
+       TODO: SUBSTITUIR POR VERSÃO QUADRADA DA LOGO OFICIAL, se disponível. -->
+  <rect width="64" height="64" rx="14" fill="#294908"/>
+  <g fill="#F7F5EE">
+    <ellipse cx="32" cy="42" rx="13" ry="11"/>
+    <ellipse cx="16" cy="29" rx="6" ry="8" transform="rotate(-18 16 29)"/>
+    <ellipse cx="26" cy="19" rx="5.6" ry="8" transform="rotate(-7 26 19)"/>
+    <ellipse cx="38" cy="19" rx="5.6" ry="8" transform="rotate(7 38 19)"/>
+    <ellipse cx="48" cy="29" rx="6" ry="8" transform="rotate(18 48 29)"/>
+  </g>
+</svg>
