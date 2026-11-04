@@ -1,0 +1,746 @@
+/* ==========================================================================
+   SEÇÕES — layouts específicos de cada bloco da página
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HERO / INÍCIO
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  /* O padding-top compensa o header fixo (que fica sobreposto ao hero). */
+  padding-top: calc(var(--header-height) + var(--space-xl));
+  padding-bottom: var(--space-2xl);
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(168, 188, 131, 0.38) 0%, transparent 60%),
+    radial-gradient(90% 80% at 0% 100%, rgba(198, 154, 75, 0.16) 0%, transparent 55%),
+    var(--color-bg);
+  overflow: hidden;
+}
+
+.hero__grid {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--space-2xl);
+  }
+}
+
+.hero__title {
+  margin-bottom: var(--space-sm);
+}
+
+/* Linha de apoio dentro do H1: aparência de "eyebrow", em linha própria. */
+.hero__kicker {
+  display: flex;
+}
+
+/* Bloco próprio: a animação de entrada (transform) não age em elementos
+   inline, e a frase principal precisa começar em nova linha. */
+.hero__headline {
+  display: block;
+}
+
+/* Realce sutil na palavra-chave da headline. */
+.hero__title em {
+  font-style: normal;
+  color: var(--color-secondary-deep);
+  position: relative;
+  white-space: nowrap;
+}
+
+.hero__title em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.06em;
+  height: 0.28em;
+  background: rgba(198, 154, 75, 0.35);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+.hero__subtitle {
+  font-size: var(--step-1);
+  color: var(--color-text-muted);
+  max-width: 56ch;
+}
+
+/* A frase de abertura é o gancho: mesma família, mais peso e a cor da marca. */
+.hero__subtitle strong {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-lg);
+}
+
+/* ---------- Indicadores de confiança ---------- */
+.trust {
+  display: grid;
+  /* Celular: um indicador por linha, com a largura toda para o texto (em
+     colunas estreitas, "Bairro Floresta" e o endereço quebravam no meio). */
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  /* Respiro entre a linha divisória e o conteúdo. */
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.trust__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+}
+
+/* A partir de 600 px: três colunas com o ícone ACIMA do texto, o que devolve
+   ao texto os ~40 px que o ícone ao lado ocupava. */
+@media (min-width: 600px) {
+  .trust {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md) var(--space-lg);
+  }
+
+  .trust__item {
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+}
+
+.trust__icon {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  fill: var(--color-secondary);
+}
+
+.trust__label,
+.trust__desc {
+  /* Em linhas separadas: lado a lado, rótulo e descrição se misturavam. */
+  display: block;
+}
+
+.trust__label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  color: var(--color-primary);
+}
+
+.trust__desc {
+  margin-top: 0.3rem;
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Bloco visual do hero ---------- */
+.hero__media {
+  position: relative;
+}
+
+/* Placeholder de imagem reutilizável — mantém proporção definida (evita CLS). */
+.media-placeholder {
+  position: relative;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-md);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  border: 1.5px dashed var(--color-border-strong);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(168, 188, 131, 0.14) 0 12px,
+      rgba(247, 245, 238, 0) 12px 24px
+    ),
+    var(--color-bg-alt);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  overflow: hidden;
+}
+
+/* Quando a foto real for inserida, o <img> cobre o placeholder. */
+.media-placeholder img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-placeholder__icon {
+  width: 40px;
+  height: 40px;
+  fill: var(--color-secondary);
+  opacity: 0.7;
+}
+
+/* Foto de destaque: retrato no celular, quase quadrada no desktop. */
+.hero__photo {
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 960px) {
+  .hero__photo {
+    aspect-ratio: 1 / 1.12;
+  }
+}
+
+/* Tablet (coluna única, mas tela larga): sem limite, a foto em retrato
+   ocupava mais que uma tela inteira e era ampliada além do original
+   (600 px). Largura máxima + proporção quadrada resolvem os dois. */
+@media (min-width: 600px) and (max-width: 959px) {
+  .hero__media {
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .hero__photo {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* Selo flutuante decorativo sobre a imagem do hero. */
+.hero__badge {
+  position: absolute;
+  left: calc(-1 * var(--space-sm));
+  bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  max-width: 260px;
+}
+
+@media (max-width: 480px) {
+  .hero__badge {
+    left: var(--space-2xs);
+    bottom: var(--space-2xs);
+  }
+}
+
+.hero__badge svg {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  fill: var(--color-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   SOBRE
+   -------------------------------------------------------------------------- */
+.about__grid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 960px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* Mosaico de fotos da estrutura. */
+.about__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2xs);
+}
+
+.about__gallery .photo {
+  aspect-ratio: 1 / 1;
+}
+
+/* A fachada abre o mosaico ocupando a largura toda. */
+.about__gallery .photo:first-child {
+  grid-column: span 2;
+  aspect-ratio: 16 / 9;
+}
+
+.values {
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.value {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+}
+
+.value__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: rgba(168, 188, 131, 0.3);
+}
+
+.value__icon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-primary);
+}
+
+.value__title {
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.15rem;
+}
+
+.value__text {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   CURSOS — vitrine de destaques + lista expansível
+
+   Estratégia de progressive enhancement:
+   - sem JavaScript, TODOS os cursos aparecem e o botão não existe;
+   - com JavaScript (classe `.js`, aplicada em script inline no <head> antes
+     da primeira pintura), os extras já nascem recolhidos e o botão aparece.
+   Os cards ficam sempre no HTML — o Google indexa os 16 nomes de curso.
+   -------------------------------------------------------------------------- */
+/* Grade de cursos: 1 -> 2 -> 4 colunas. Com 4 cursos em destaque, uma grade
+   de 3 colunas deixaria o 4º card sozinho numa segunda linha. Vem depois de
+   .grid (components.css), por isso a sobrescreve. */
+.course-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .course-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Títulos um degrau menores: cabem bem nos cards de 4 colunas. */
+.course-grid .card__title {
+  font-size: var(--step-1);
+}
+
+.courses__extra {
+  /* Mesmo espaçamento do `gap` da grade, para as duas grades parecerem uma só. */
+  margin-top: var(--space-md);
+}
+
+.js .courses__extra {
+  display: none;
+}
+
+.js .courses__extra.is-expanded {
+  /* Precisa vencer a regra acima e restaurar o `display` de `.grid`. */
+  display: grid;
+}
+
+.courses__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-lg);
+}
+
+/* O botão só faz sentido quando há JavaScript para expandir/recolher. */
+.courses__toggle {
+  display: none;
+}
+
+.js .courses__toggle {
+  display: inline-flex;
+}
+
+.courses__toggle-icon {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+/* Aberto: a seta aponta para cima ("recolher"). */
+.courses__toggle[aria-expanded='true'] .courses__toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
+   GALERIA — turmas, conclusões de curso e procedimentos
+   Colunas CSS (layout "masonry"): cada foto mantém a proporção original,
+   então fotos em pé e deitadas convivem sem cortar ninguém.
+   -------------------------------------------------------------------------- */
+.gallery {
+  column-count: 2;
+  column-gap: var(--space-sm);
+}
+
+@media (min-width: 700px) {
+  .gallery {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1100px) {
+  .gallery {
+    column-count: 4;
+  }
+}
+
+.gallery__item {
+  /* inline-block + largura total é a forma mais compatível de impedir que
+     um item seja partido entre duas colunas (inclusive Safari antigo). */
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 var(--space-sm);
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery__caption {
+  padding: 0.6rem 0.75rem 0.75rem;
+  font-size: var(--step--1);
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.gallery__tag {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary-deep);
+}
+
+/* --------------------------------------------------------------------------
+   CONTATO
+   -------------------------------------------------------------------------- */
+.contact__grid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 960px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+.contact__channels {
+  display: grid;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+/* Canal de contato clicável (WhatsApp / telefone / endereço). */
+.channel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+a.channel:hover {
+  color: inherit;
+  transform: translateY(-2px);
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.channel__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+}
+
+.channel--whatsapp .channel__icon {
+  background: var(--color-whatsapp-strong);
+}
+
+.channel__icon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-white);
+}
+
+/* Rótulo, valor e nota em linhas próprias (são <span>s; lado a lado, o
+   número e a nota se misturavam na mesma linha). */
+.channel__label,
+.channel__value,
+.channel__note {
+  display: block;
+}
+
+.channel__label {
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary-deep);
+}
+
+.channel__value {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.channel__note {
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.form-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-card__title {
+  margin-bottom: var(--space-2xs);
+}
+
+/* Sem JavaScript: esconde o formulário e mostra o atalho para o WhatsApp.
+   Com JavaScript (classe .js, aplicada antes da primeira pintura), o
+   contrário — sem "piscar". */
+.form__nojs {
+  font-weight: 600;
+}
+
+.js .form__nojs,
+html:not(.js) [data-interest-form] {
+  display: none;
+}
+
+.form-card__intro {
+  margin-bottom: var(--space-md);
+}
+
+/* Botão "Como chegar", abaixo do mapa. */
+.contact__directions {
+  margin-top: var(--space-sm);
+}
+
+@media (min-width: 700px) {
+  .form-card {
+    padding: var(--space-lg);
+  }
+}
+
+.privacy-note {
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+  border-left: 3px solid var(--color-light-green);
+  padding-left: var(--space-xs);
+}
+
+/* --------------------------------------------------------------------------
+   PATRIOCINIO / PARCEIROS
+   -------------------------------------------------------------------------- */
+.sponsors {
+  display: grid;
+  /* Duas colunas já no celular (inclusive 320 px): são dois parceiros e os
+     logos são pequenos. 2 x 128 px + espaço cabe em 288 px úteis. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 128px), 1fr));
+  gap: var(--space-sm);
+  /* Teto centralizado: com poucos parceiros, `1fr` esticaria cada card por
+     metade da tela. Continua funcionando se um terceiro for adicionado. */
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.sponsor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: var(--space-md) var(--space-sm);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+.sponsor:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Altura fixa e largura proporcional: logos de formatos diferentes ficam
+   com o mesmo peso visual. */
+.sponsor img {
+  width: auto;
+  height: clamp(72px, 4vw + 56px, 104px);
+}
+
+/* Logos circulares têm margem branca interna e parecem menores que os
+   quadrados na mesma altura; ~20% a mais equilibra o peso visual. */
+.sponsor--round img {
+  height: clamp(86px, 4.8vw + 67px, 124px);
+}
+
+.sponsor__name {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+
+.sponsor__name span {
+  display: block;
+  font-weight: 400;
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.sponsor__cta {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   FAIXA DE CTA FINAL
+   -------------------------------------------------------------------------- */
+.cta-band {
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+  align-items: center;
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 860px) {
+  .cta-band {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: var(--space-xl);
+  }
+}
+
+.cta-band h2 {
+  color: var(--color-white);
+  font-size: var(--step-3);
+}
+
+.cta-band p {
+  color: var(--color-text-on-dark-muted);
+  margin-top: var(--space-2xs);
+  max-width: 60ch;
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+/* --------------------------------------------------------------------------
+   PÁGINA DE CONTEÚDO SIMPLES (política de privacidade)
+   -------------------------------------------------------------------------- */
+.page {
+  padding-top: calc(var(--header-height) + var(--space-xl));
+  padding-bottom: var(--space-2xl);
+}
+
+/* Página 404: centralizada verticalmente, com logo e dois caminhos. */
+.page--erro {
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  padding-top: var(--space-xl);
+}
+
+.page__logo {
+  width: auto;
+  height: 52px;
+  margin-bottom: var(--space-lg);
+}
+
+.page__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-md);
+}
+
+.prose h2 {
+  font-size: var(--step-2);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-2xs);
+}
+
+.prose p,
+.prose ul {
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-muted);
+}
+
+.prose ul {
+  padding-left: 1.2rem;
+}
+
+.prose li {
+  margin-bottom: 0.4rem;
+}

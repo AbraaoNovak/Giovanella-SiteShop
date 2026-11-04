@@ -1,0 +1,61 @@
+/* ==========================================================================
+   COMPATIBILIDADE COM NAVEGADORES MAIS ANTIGOS
+   Importado por ÚLTIMO em main.css. Reúne, num só lugar, os fallbacks para
+   recursos que nem todos os navegadores suportados entendem — assim o CSS
+   principal continua escrito de forma moderna e limpa.
+
+   Navegadores suportados (ver também `build.target` em vite.config.js):
+     Chrome/Edge 88+ · Firefox 78+ (ESR) · Safari/iOS 14+ · Samsung Internet 15+
+
+   Outros recursos modernos usados no projeto e por que NÃO precisam de
+   fallback aqui:
+   - `inset`: NÃO é usado — escrito como top/right/bottom/left no código-
+     fonte (Safari < 14.1). Não confie no build para isso: o esbuild não
+     converteu a forma de 4 valores do header. Evite reintroduzir `inset`;
+   - `backdrop-filter`: já protegido por @supports em components.css;
+   - `:focus-visible`: onde não existe, a regra que remove o contorno
+     (`:focus:not(:focus-visible)`) é inválida e descartada inteira, então o
+     contorno padrão do navegador continua aparecendo;
+   - `text-wrap`, `overscroll-behavior`, `scroll-behavior`: melhorias
+     progressivas — se ignoradas, nada quebra.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   aspect-ratio — Safari < 15, Firefox < 89
+
+   Sem suporte, elementos cujo conteúdo é todo posicionado de forma absoluta
+   (mapa, imagem dos cards) ficariam com ALTURA ZERO e sumiriam da página.
+   Os valores abaixo aproximam as proporções originais.
+   -------------------------------------------------------------------------- */
+@supports not (aspect-ratio: 1 / 1) {
+  /* Mapa: quadrado no celular, 16/10 a partir de 700px. */
+  .map {
+    height: 320px;
+  }
+
+  @media (min-width: 700px) {
+    .map {
+      height: 420px;
+    }
+  }
+
+  /* Faixa de imagem dos cards de curso (40/21). */
+  .course-card__media {
+    height: 190px;
+  }
+
+  /* Fotos com imagem posicionada de forma absoluta precisam de altura
+     explícita quando aspect-ratio não existe. */
+  .hero__photo {
+    height: 420px;
+  }
+
+  .about__gallery .photo {
+    height: 170px;
+  }
+
+  .about__gallery .photo:first-child {
+    height: 240px;
+  }
+
+}

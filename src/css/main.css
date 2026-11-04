@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Giovanella Escola Estética Animal — folha de estilo principal
+   A ordem dos imports importa: tokens -> base -> componentes -> seções -> anim
+   -> compat (fallbacks por último, para poderem sobrescrever o que precisarem).
+   ========================================================================== */
+/* Fonte Inter servida pelo próprio site (pacote Fontsource, licença OFL),
+   em vez do Google Fonts: sem requisição a terceiros ao abrir a página
+   (privacidade/LGPD), CSP mais estrita e texto aparecendo mais rápido.
+   Só o eixo de peso (wght): o site usa 400, 600 e 700. */
+@import '@fontsource-variable/inter/wght.css';
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+@import './sections.css';
+@import './animations.css';
+@import './compat.css';

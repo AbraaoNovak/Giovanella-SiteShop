@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#294908" />
+
+    <title>Política de Privacidade | Giovanella Escola Estética Animal</title>
+    <meta
+      name="description"
+      content="Política de Privacidade da Giovanella Escola Estética Animal: como tratamos (e não armazenamos) os dados informados no site."
+    />
+    <link rel="canonical" href="https://www.escolabanhoetosarosigiovanella.com.br/privacidade.html" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+
+    <!-- ==================================================================
+         JAVASCRIPT — ativação progressiva com redes de segurança
+         A classe .js é aplicada ANTES da primeira pintura, pois estados
+         iniciais dependem dela (cursos recolhidos, animações de entrada).
+         Se o script principal NÃO chegar a inicializar, a classe precisa
+         sair — senão o conteúdo que ela esconde ficaria inacessível.
+         Três cenários são cobertos:
+           1. o arquivo falha ao carregar (rede, bloqueador, file://) -> listener
+              de erro em fase de captura;
+           2. navegador sem suporte a ES modules -> <script nomodule>;
+           3. erro em tempo de execução ou carregamento travado -> temporizador,
+              desfeito quando main.js marca .js-ready.
+         Este trecho é ES5 puro de propósito: precisa rodar em QUALQUER navegador.
+         ================================================================== -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add('js');
+
+        // (1) Falha ao CARREGAR o script de módulo: rede, bloqueador, file://.
+        // Erros de recurso não borbulham, mas passam pela fase de CAPTURA do
+        // window. Fica aqui (e não num atributo onerror) porque o build do
+        // Vite descarta atributos onerror de scripts que ele reescreve.
+        window.addEventListener(
+          'error',
+          function (event) {
+            var alvo = event.target;
+            if (alvo && alvo.tagName === 'SCRIPT' && alvo.type === 'module') {
+              root.classList.remove('js');
+            }
+          },
+          true
+        );
+
+        // (3) 8 s cobre conexões lentas; main.js marca .js-ready ao terminar.
+        window.setTimeout(function () {
+          if (!root.classList.contains('js-ready')) {
+            root.classList.remove('js');
+            root.setAttribute('data-js-timeout', '');
+          }
+        }, 8000);
+      })();
+    </script>
+    <script type="module" src="/src/js/main.js"></script>
+    <!-- (2) Navegador sem ES modules: ignora type=module e executa nomodule. -->
+    <script nomodule>
+      document.documentElement.classList.remove('js');
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
+
+    <header class="header is-scrolled" data-header>
+      <div class="container header__inner">
+        <a class="header__brand" href="/" aria-label="Giovanella Escola Estética Animal — ir para a página inicial">
+          <img
+            class="header__logo"
+            src="/img/Logo-Giovanella.png"
+            alt="Giovanella Escola Estética Animal"
+            width="331"
+            height="100"
+          />
+        </a>
+        <a class="btn btn--secondary" href="/">Voltar ao site</a>
+      </div>
+    </header>
+
+    <main id="main" class="page">
+      <div class="container container--narrow prose">
+        <h1>Política de Privacidade</h1>
+        <p>
+          <strong>Última atualização:</strong> 1º de novembro de 2026.
+        </p>
+
+        <p>
+          Esta política descreve como a <strong>Giovanella Escola Estética Animal</strong> trata os
+          dados relacionados ao uso deste site, em conformidade com a Lei Geral de Proteção de
+          Dados (Lei nº 13.709/2018 — LGPD).
+        </p>
+
+        <h2>1. Princípio: coletamos o mínimo possível</h2>
+        <p>
+          Este site <strong>não possui banco de dados</strong>, <strong>não envia e-mails</strong> e
+          <strong>não armazena</strong> as informações digitadas por você.
+        </p>
+
+        <h2>2. Formulário de interesse</h2>
+        <p>
+          Os campos de nome, telefone, assunto e mensagem existem apenas para montar
+          automaticamente uma mensagem de WhatsApp. Ao clicar em “Continuar pelo WhatsApp”:
+        </p>
+        <ul>
+          <li>a mensagem é montada no seu próprio navegador;</li>
+          <li>o WhatsApp é aberto com o texto já preenchido;</li>
+          <li>
+            nenhum dado é enviado, armazenado ou compartilhado por este site.
+          </li>
+        </ul>
+        <p>
+          A partir do momento em que você envia a mensagem, a conversa passa a ser tratada pelo
+          WhatsApp, sujeita aos termos e à política de privacidade da Meta Platforms.
+        </p>
+
+        <h2>3. Dados de contato que recebemos</h2>
+        <p>
+          Quando você fala conosco por WhatsApp ou telefone, recebemos as informações que você
+          decide compartilhar (como nome, telefone e o interesse informado). Elas são usadas apenas
+          para responder à sua solicitação e prestar o atendimento.
+        </p>
+
+        <h2>4. Cookies e medição de audiência</h2>
+        <p>
+          O site pode utilizar o Google Analytics 4 para entender, de forma agregada, como as
+          páginas são acessadas. Essa medição:
+        </p>
+        <ul>
+          <li>só é ativada após o seu consentimento explícito no aviso exibido na primeira visita;</li>
+          <li>usa anonimização de IP e desativa sinais de publicidade personalizada;</li>
+          <li>
+            <strong>nunca</strong> recebe nome, telefone ou o conteúdo da mensagem digitada no
+            formulário.
+          </li>
+        </ul>
+        <p>
+          Se você recusar, nenhum script de medição é carregado. Sua escolha (aceitar ou recusar)
+          fica salva apenas no seu próprio navegador, para que o aviso não apareça a cada visita;
+          para revê-la, limpe os dados deste site no navegador.
+        </p>
+
+        <h2>5. Serviços do Google</h2>
+        <p>
+          Ao abrir as páginas deste site, nenhuma requisição é feita ao Google nem a outros
+          serviços externos: textos, fontes e imagens vêm do próprio site. O Google só entra em
+          cena quando você escolhe — ao aceitar a medição de audiência (seção 4) ou nos casos
+          abaixo:
+        </p>
+        <ul>
+          <li>
+            <strong>Mapa:</strong> o mapa do Google só é carregado quando você clica para
+            visualizá-lo.
+          </li>
+          <li>
+            <strong>Links:</strong> os botões “Como chegar” e “Ver todas as avaliações no Google”
+            abrem páginas do próprio Google.
+          </li>
+        </ul>
+        <p>
+          Nesses casos, os dados são tratados pelo Google, conforme a política de privacidade
+          dele.
+        </p>
+
+        <h2>6. Fotos e depoimentos</h2>
+        <p>
+          As fotos de turmas, aulas e procedimentos são registros da própria escola. Os depoimentos
+          reproduzem avaliações públicas deixadas no Google, identificadas apenas pelo primeiro
+          nome e pela inicial do sobrenome. Se você aparece em alguma foto ou depoimento e prefere
+          que ele seja retirado do site, basta pedir pelos canais da seção 8.
+        </p>
+
+        <h2>7. Seus direitos</h2>
+        <p>
+          A LGPD garante a você o direito de confirmar a existência de tratamento, acessar,
+          corrigir, anonimizar, portar ou eliminar seus dados, além de revogar o consentimento.
+          Como este site não armazena o que é digitado nele, esses pedidos se aplicam às conversas
+          mantidas por WhatsApp ou telefone e às fotos e depoimentos publicados no site.
+        </p>
+
+        <h2>8. Contato do responsável</h2>
+        <p>
+          Este é o nosso canal para exercer seus direitos, pedir a retirada de uma foto ou
+          depoimento, ou tirar dúvidas sobre esta política:
+        </p>
+        <ul>
+          <li>
+            WhatsApp / telefone:
+            <a data-tel href="tel:+5547996086955"
+              ><span data-config="contact.phoneDisplay">(47) 99608-6955</span></a
+            >
+          </li>
+          <li>Endereço: Rua Elly Soares, 511 — Bairro Floresta, Joinville - SC</li>
+        </ul>
+
+        <h2>9. Alterações desta política</h2>
+        <p>
+          Esta política pode ser atualizada. A data da última revisão sempre constará no topo desta
+          página.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer" data-header-theme="dark">
+      <div class="container">
+        <div class="footer__bottom footer__bottom--solo">
+          <span>&copy; <span data-year>2026</span> Giovanella Escola Estética Animal.</span>
+          <a href="/">Voltar ao site</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

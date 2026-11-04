@@ -1,0 +1,1088 @@
+/* ==========================================================================
+   COMPONENTES REUTILIZÁVEIS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   BUTTON
+   Variantes: --primary | --secondary | --ghost | --whatsapp | --outline-light
+   -------------------------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--color-primary);
+  --btn-fg: var(--color-white);
+  --btn-border: var(--color-primary);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  /* Área de toque confortável (>= 44px) em qualquer tamanho de tela. */
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid var(--btn-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: var(--step-0);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out), background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover {
+  color: var(--btn-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn[disabled],
+.btn[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--primary:hover {
+  --btn-bg: #1d3505;
+  --btn-border: #1d3505;
+}
+
+.btn--secondary {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-primary);
+  --btn-border: var(--color-secondary);
+}
+
+.btn--secondary:hover {
+  --btn-bg: rgba(95, 127, 53, 0.1);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-secondary-deep);
+  --btn-border: transparent;
+  padding-inline: 0.75rem;
+}
+
+.btn--ghost:hover {
+  --btn-fg: var(--color-primary);
+  box-shadow: none;
+}
+
+/* CTA de WhatsApp — usa a variante forte do verde para garantir contraste. */
+.btn--whatsapp {
+  --btn-bg: var(--color-whatsapp-strong);
+  --btn-fg: var(--color-white);
+  --btn-border: var(--color-whatsapp-strong);
+}
+
+.btn--whatsapp:hover {
+  --btn-bg: #0f7a40;
+  --btn-border: #0f7a40;
+}
+
+.btn--outline-light {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-white);
+  --btn-border: rgba(255, 255, 255, 0.55);
+}
+
+.btn--outline-light:hover {
+  --btn-bg: rgba(255, 255, 255, 0.12);
+  --btn-border: var(--color-white);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn__icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  fill: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER — fixo, com blur e adaptação clara/escura
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  z-index: var(--z-header);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  /* Estado inicial: sobre o hero, sem fundo. */
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+
+/* Rolagem iniciada: fundo translúcido + blur (opacidade "inteligente"). */
+.header.is-scrolled {
+  background-color: rgba(247, 245, 238, 0.9);
+  border-bottom-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .header.is-scrolled {
+    background-color: rgba(247, 245, 238, 0.7);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+  }
+}
+
+/* Sobre seções escuras o header inverte automaticamente. */
+.header.is-on-dark {
+  background-color: rgba(22, 38, 4, 0.62);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .header.is-on-dark {
+    background-color: rgba(22, 38, 4, 0.45);
+  }
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.header__brand {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  text-decoration: none;
+}
+
+.header__logo {
+  height: clamp(34px, 2.4vw + 26px, 46px);
+  width: auto;
+  transition: filter var(--dur) var(--ease-out);
+}
+
+/* A logo é monocromática escura: sobre fundo escuro convertemos para branco.
+   TODO: SUBSTITUIR POR ARQUIVO DE LOGO EM VERSÃO CLARA, se houver. */
+.header.is-on-dark .header__logo,
+.footer__logo {
+  filter: brightness(0) invert(1);
+}
+
+/* ---------- Navegação desktop ---------- */
+.nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.25rem, 1.2vw, 1rem);
+  }
+}
+
+.nav__link {
+  position: relative;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.header.is-on-dark .nav__link {
+  color: var(--color-text-on-dark);
+}
+
+/* Sublinhado animado (transform — barato para o compositor). */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: 0.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.nav__link:hover,
+.nav__link[aria-current='true'] {
+  color: var(--color-secondary-deep);
+}
+
+.header.is-on-dark .nav__link:hover,
+.header.is-on-dark .nav__link[aria-current='true'] {
+  color: var(--color-light-green);
+}
+
+.nav__link:hover::after,
+.nav__link[aria-current='true']::after {
+  transform: scaleX(1);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.header__cta {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .header__cta {
+    display: inline-flex;
+    min-height: 44px;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HAMBURGER + MENU MOBILE
+   -------------------------------------------------------------------------- */
+.hamburger {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.header.is-on-dark .hamburger {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+@media (min-width: 1024px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+/* Sem JavaScript o menu mobile não abre: em vez de exibir um botão morto,
+   ele é ocultado. A página continua navegável pela rolagem e pelo menu do
+   rodapé. A classe `.js` é aplicada antes da primeira pintura, então não há
+   piscada para quem tem JavaScript. */
+html:not(.js) .hamburger {
+  display: none;
+}
+
+.hamburger__bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-primary);
+  transition: transform var(--dur) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+
+.header.is-on-dark .hamburger__bar {
+  background: var(--color-white);
+}
+
+.hamburger[aria-expanded='true'] .hamburger__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded='true'] .hamburger__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded='true'] .hamburger__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Painel do menu mobile */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-menu);
+  /* Garante que o painel deslizado para fora nunca gere rolagem horizontal. */
+  overflow: hidden;
+  /* `visibility` mantém o conteúdo fora da ordem de foco quando fechado. */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out), visibility 0s linear var(--dur);
+}
+
+.mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity var(--dur) var(--ease-out), visibility 0s;
+}
+
+.mobile-menu__backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(22, 38, 4, 0.45);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mobile-menu__panel {
+  position: relative;
+  margin-left: auto;
+  width: min(420px, 100%);
+  height: 100%;
+  padding: calc(var(--header-height) + var(--space-md)) var(--gutter) var(--space-xl);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translateX(100%);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.mobile-menu.is-open .mobile-menu__panel {
+  transform: translateX(0);
+}
+
+.mobile-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  margin: 0 0 var(--space-lg);
+}
+
+.mobile-menu__link {
+  display: block;
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.mobile-menu__link:hover {
+  color: var(--color-secondary-deep);
+}
+
+.mobile-menu__actions {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+/* --------------------------------------------------------------------------
+   CARD (base) + grade responsiva
+   -------------------------------------------------------------------------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-light-green);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+  padding: var(--space-md);
+}
+
+.card__title {
+  font-size: var(--step-2);
+}
+
+.card__text {
+  color: var(--color-text-muted);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+}
+
+/* --------------------------------------------------------------------------
+   PHOTO — foto real com proporção controlada pelo contexto
+   O contêiner define a proporção (aspect-ratio no seletor de quem o usa);
+   a imagem o preenche com `object-fit: cover`. As dimensões reais ficam
+   nos atributos width/height do <img>, evitando saltos de layout.
+   -------------------------------------------------------------------------- */
+.photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  /* Cor de fundo enquanto a imagem carrega. */
+  background: var(--color-bg-alt);
+}
+
+.photo img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Legenda sobreposta, legível sobre qualquer foto. */
+.photo__caption {
+  position: absolute;
+  left: var(--space-2xs);
+  bottom: var(--space-2xs);
+  max-width: calc(100% - 2 * var(--space-2xs));
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: rgba(22, 38, 4, 0.78);
+  color: var(--color-white);
+  font-size: var(--step--1);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------------
+   COURSE CARD
+   -------------------------------------------------------------------------- */
+.course-card__media {
+  position: relative;
+  /* Mesma proporção das fotos recortadas dos pôsteres (720×378): a imagem
+     aparece inteira, sem cortes. */
+  aspect-ratio: 40 / 21;
+  background: linear-gradient(135deg, var(--color-light-green), var(--color-secondary));
+  display: grid;
+  place-items: center;
+  color: var(--color-white);
+}
+
+.course-card__media img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: rgba(168, 188, 131, 0.28);
+  border: 1px solid rgba(95, 127, 53, 0.28);
+  color: var(--color-primary);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.course-card__list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.course-card__list li {
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: flex-start;
+}
+
+.course-card__list li::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-top: 0.6em;
+  border-radius: 50%;
+  background: var(--color-gold);
+}
+
+.course-card__footer {
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIAL CARD
+   -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   CARROSSEL CONTÍNUO ("marquee") — usado nos depoimentos
+   Estados (classes aplicadas por src/js/modules/marquee.js):
+   - sem classe:    faixa parada e rolável (sem JS ou "reduzir movimento");
+   - .is-running:   deslizando da direita para a esquerda, em loop;
+   - .is-offscreen: fora da tela (pausado).
+   -------------------------------------------------------------------------- */
+.marquee {
+  overflow: hidden;
+  /* Bordas esmaecidas: o card some aos poucos à esquerda e surge à direita. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  border-radius: var(--radius-lg);
+}
+
+.marquee__track {
+  display: flex;
+  /* Cards da mesma altura na faixa; o autor fica alinhado na base. */
+  align-items: stretch;
+  width: max-content;
+}
+
+/* Espaço via margem (e não `gap`): assim as duas metades do trilho têm
+   exatamente a mesma largura, e -50% emenda o loop sem salto. */
+.marquee__track > .testimonial {
+  flex: none;
+  width: min(360px, 82vw);
+  margin-right: var(--space-md);
+}
+
+.marquee.is-running .marquee__track {
+  animation: marquee-deslizar var(--marquee-duration, 60s) linear infinite;
+}
+
+/* Pausas: fora da tela, e com foco — que cobre teclado (Tab) e toque (um
+   toque dá foco ao carrossel, pelo tabindex="0"). Sem botão, por decisão do
+   cliente; estas são as formas de parar o movimento (WCAG 2.2.2). */
+.marquee.is-offscreen .marquee__track,
+.marquee:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+
+/* O foco por toque não precisa de contorno; o do teclado continua visível
+   pela regra global de :focus-visible. */
+.marquee:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Mouse sobre o carrossel pausa — só em aparelhos com mouse. Em telas de
+   toque o "hover" fica preso após um toque e travaria a rolagem. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee-deslizar {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Parado (sem JS ou com "reduzir movimento"): faixa rolável com encaixe,
+   sem o esmaecimento das bordas, que esconderia o primeiro card. */
+.marquee:not(.is-running) {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-mask-image: none;
+  mask-image: none;
+  padding-bottom: var(--space-2xs);
+}
+
+.marquee:not(.is-running) .testimonial {
+  scroll-snap-align: start;
+}
+
+/* Garantia extra: com "reduzir movimento", nada se move, mesmo que o JS
+   ainda não tenha reagido à mudança de preferência. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee .marquee__track {
+    animation: none !important;
+  }
+}
+
+.testimonials__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2xs) var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.testimonial {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.testimonial__stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--color-gold);
+}
+
+.testimonial__stars svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.testimonial__quote {
+  font-size: 1.02rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Avaliações com mais de um parágrafo (quebra de linha original). */
+.testimonial__quote p + p {
+  margin-top: 0.6em;
+}
+
+.testimonial__person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-top: auto;
+}
+
+.testimonial__avatar {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-light-green);
+  color: var(--color-primary);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+.testimonial__name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.testimonial__role {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: var(--step--1);
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   BOTÃO FLUTUANTE DE WHATSAPP
+   -------------------------------------------------------------------------- */
+.wa-float {
+  position: fixed;
+  right: clamp(0.85rem, 2vw, 1.75rem);
+  bottom: clamp(0.85rem, 2vw, 1.75rem);
+  z-index: var(--z-float);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  /* Área de toque generosa em qualquer dispositivo. */
+  min-width: 58px;
+  min-height: 58px;
+  padding: 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-whatsapp-strong);
+  color: var(--color-white);
+  box-shadow: 0 8px 24px rgba(18, 140, 74, 0.35);
+  text-decoration: none;
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+
+.wa-float:hover,
+.wa-float:focus-visible {
+  color: var(--color-white);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(18, 140, 74, 0.45);
+}
+
+.wa-float__icon {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  fill: currentColor;
+}
+
+.wa-float__tooltip {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.95rem;
+  opacity: 0;
+  transition: max-width var(--dur-slow) var(--ease-out), opacity var(--dur) var(--ease-out),
+    margin var(--dur-slow) var(--ease-out);
+}
+
+/* Apenas dispositivos com ponteiro fino (mouse) expandem a tooltip no hover. */
+@media (hover: hover) and (pointer: fine) {
+  .wa-float:hover .wa-float__tooltip,
+  .wa-float:focus-visible .wa-float__tooltip {
+    max-width: 220px;
+    opacity: 1;
+    margin-right: 0.35rem;
+  }
+}
+
+/* Halo pulsante discreto, na cor oficial do WhatsApp. */
+.wa-float::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  border: 2px solid var(--color-whatsapp);
+  opacity: 0;
+  animation: wa-pulse 3.2s var(--ease-out) infinite;
+  pointer-events: none;
+}
+
+@keyframes wa-pulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   FORMULÁRIO
+   -------------------------------------------------------------------------- */
+.form {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field__label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.field__required {
+  color: #a63a1c;
+}
+
+.field__control {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  transition: border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+textarea.field__control {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.field__control:hover {
+  border-color: var(--color-secondary);
+}
+
+.field__control:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(95, 127, 53, 0.25);
+}
+
+.field__control[aria-invalid='true'] {
+  border-color: #a63a1c;
+}
+
+.field__control[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(166, 58, 28, 0.22);
+}
+
+.field__hint {
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.field__error {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: #a63a1c;
+  min-height: 1.2em;
+}
+
+.field__counter {
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+/* Honeypot — fora da tela em vez de display:none, para que bots simples
+   continuem preenchendo o campo e sejam detectados. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.form__status {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-secondary-deep);
+  min-height: 1.4em;
+}
+
+/* --------------------------------------------------------------------------
+   MAPA (facade com carregamento sob demanda)
+   -------------------------------------------------------------------------- */
+.map {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  /* A altura vem SEMPRE da proporção sobre a largura disponível.
+     Não usar `min-height` junto com `aspect-ratio`: em telas estreitas o
+     min-height passaria a ditar a LARGURA (altura x proporção), estourando
+     a coluna e alargando a viewport de layout. */
+  width: 100%;
+  /* Evita que o item infle a faixa do grid ao qual pertence. */
+  min-width: 0;
+  /* No celular o quadrado aproveita melhor a largura estreita. */
+  aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 700px) {
+  .map {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.map__facade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  text-align: center;
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  color: var(--color-primary);
+  /* Padrão sutil que sugere um mapa sem baixar nada de terceiros. */
+  background-image: linear-gradient(rgba(168, 188, 131, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 188, 131, 0.22) 1px, transparent 1px);
+  background-size: 34px 34px;
+  background-color: var(--color-bg-alt);
+}
+
+.map__facade:hover {
+  background-color: #e2ddcb;
+}
+
+.map__pin {
+  width: 44px;
+  height: 44px;
+  fill: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   BANNER DE CONSENTIMENTO (LGPD)
+   -------------------------------------------------------------------------- */
+.consent {
+  position: fixed;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: var(--space-sm);
+  z-index: var(--z-overlay);
+  max-width: 560px;
+  padding: var(--space-md);
+  background: var(--color-white);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  gap: var(--space-xs);
+  transform: translateY(160%);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.consent.is-visible {
+  transform: translateY(0);
+}
+
+.consent__text {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.consent .btn {
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.92rem;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+  background: var(--color-footer);
+  color: var(--color-text-on-dark);
+  padding-block: var(--space-xl) var(--space-md);
+}
+
+.footer a {
+  color: var(--color-text-on-dark);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--color-light-green);
+  text-decoration: underline;
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.footer__logo {
+  height: 44px;
+  width: auto;
+  margin-bottom: var(--space-xs);
+}
+
+.footer__title {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-light-green);
+  margin-bottom: var(--space-xs);
+}
+
+.footer__list {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text-on-dark-muted);
+}
+
+.footer__bottom {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-md);
+  justify-content: space-between;
+  font-size: var(--step--1);
+  color: var(--color-text-on-dark-muted);
+}
+
+/* Rodapé reduzido (página de privacidade): sem a divisória superior. */
+.footer__bottom--solo {
+  margin-top: 0;
+  border-top: 0;
+}

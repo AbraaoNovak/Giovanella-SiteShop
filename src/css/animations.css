@@ -1,0 +1,114 @@
+/* ==========================================================================
+   ANIMAÇÕES
+   Todas as animações usam apenas `opacity` e `transform` (compositor-friendly)
+   e são desligadas quando o usuário pede menos movimento.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SCROLL REVEAL
+   O estado inicial só é aplicado quando o JS confirma suporte (classe `js`),
+   evitando conteúdo invisível caso o script falhe.
+   -------------------------------------------------------------------------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  /* Libera a camada do compositor após a animação. */
+  will-change: auto;
+}
+
+/* --------------------------------------------------------------------------
+   PATINHAS ATRAVESSANDO AS DIVISAS (Experimento 1)
+
+   Cada trilha é inserida pelo JS no topo de uma seção e sobe metade da sua
+   altura, ficando exatamente sobre a emenda com a seção anterior. As pegadas
+   são posicionadas uma única vez; o scroll apenas alterna `.is-stamped`.
+   -------------------------------------------------------------------------- */
+.paw-trail {
+  position: absolute;
+  /* Caixa centrada na divisa: metade sobre a seção anterior, metade sobre a
+     atual. As medidas vêm do JS (TRAIL_HALF), com fallback aqui. */
+  top: calc(-1 * var(--paw-trail-half, 130px));
+  left: 0;
+  width: 100%;
+  height: calc(var(--paw-trail-half, 130px) * 2);
+  z-index: 1;
+  /* Recorta as pegadas das pontas, que saem pelas laterais de propósito.
+     Sem isto elas alargariam o documento e, no celular, a viewport de
+     layout — jogando o header fixo para fora da coluna visível. */
+  overflow: hidden;
+  /* Nunca captura cliques nem toques. */
+  pointer-events: none;
+}
+
+.paw {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* O tamanho vem de PAW_SIZE, publicado pelo JS na trilha. */
+  width: var(--paw-size, 34.5px);
+  height: var(--paw-size, 34.5px);
+  fill: var(--color-secondary);
+  opacity: 0;
+  /* Antes de ser carimbada, a pegada está menor e invisível. */
+  transform: translate3d(var(--paw-x, 0), var(--paw-y, 0), 0)
+    rotate(var(--paw-rot, 0deg)) scale(0.55);
+  transition: opacity 300ms var(--ease-out), transform 380ms var(--ease-out);
+}
+
+/* Momento em que a pata "pisa": cresce até o tamanho final e aparece. */
+.paw.is-stamped {
+  opacity: var(--paw-opacity, 0.2);
+  transform: translate3d(var(--paw-x, 0), var(--paw-y, 0), 0)
+    rotate(var(--paw-rot, 0deg)) scale(1);
+}
+
+/* Modo estático (menos movimento ou aparelho limitado): as pegadas já
+   nascem carimbadas e sem transição — decoração presente, zero movimento. */
+.paw-trail--static .paw {
+  transition: none;
+}
+
+/* Alto contraste do Windows (`forced-colors`): o navegador força a cor de
+   preenchimento de SVGs e as pegadas virariam borrões de cor sólida
+   competindo com o texto. Por serem puramente decorativas, saem de cena. */
+@media (forced-colors: active) {
+  .paw-trail {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PREFERS-REDUCED-MOTION
+   Regra global: nada se move.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* As patinhas NÃO são escondidas aqui: o JS as exibe em modo estático
+     (`.paw-trail--static`), sem movimento. Ver resolvePawMode() em paws.js. */
+}

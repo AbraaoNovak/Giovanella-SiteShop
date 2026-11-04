@@ -1,0 +1,95 @@
+/* ==========================================================================
+   TOKENS — Design System
+   Fonte única de cores, tipografia, espaçamentos e transições.
+   Para alterar a identidade visual, edite APENAS este arquivo.
+   ========================================================================== */
+
+:root {
+  /* ---------- Cores da marca ---------- */
+  --color-primary: #294908;         /* Cor principal — botões, títulos, ativo */
+  --color-secondary: #5f7f35;       /* Ícones, bordas, hover, elementos gráficos */
+  --color-secondary-deep: #4a6528;  /* Variante acessível p/ TEXTO e LINKS (AA 6:1) */
+  --color-light-green: #a8bc83;     /* Destaques suaves, cards, decorativos */
+  --color-gold: #c69a4b;            /* Detalhes premium (nunca como texto pequeno) */
+  --color-terracotta: #c97855;      /* Apenas pequenos detalhes / CTA secundário */
+
+  /* ---------- Superfícies ---------- */
+  --color-bg: #f7f5ee;              /* Fundo principal */
+  --color-bg-alt: #e9e4d5;          /* Seções alternadas */
+  --color-white: #ffffff;
+  --color-footer: #162604;
+
+  /* ---------- Texto ---------- */
+  --color-text: #1f261b;
+  --color-text-muted: #4a5142;      /* AA sobre --color-bg */
+  --color-text-on-dark: #f2efe4;
+  --color-text-on-dark-muted: #c8d0b6;
+
+  /* ---------- WhatsApp ----------
+     #25D366 é a cor oficial da marca, porém não atinge 3:1 com ícone branco.
+     Usamos a variante forte para preenchimentos e a oficial para brilho/realce. */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-strong: #118449; /* AA 4.75:1 com texto branco */
+
+  /* ---------- Bordas e sombras ---------- */
+  --color-border: #d9d3c1;
+  --color-border-strong: #bdb69f;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(31, 38, 27, 0.06), 0 2px 6px rgba(31, 38, 27, 0.05);
+  --shadow-md: 0 4px 10px rgba(31, 38, 27, 0.07), 0 12px 28px rgba(31, 38, 27, 0.08);
+  --shadow-lg: 0 10px 24px rgba(31, 38, 27, 0.1), 0 28px 60px rgba(31, 38, 27, 0.12);
+
+  /* ---------- Tipografia fluida (clamp) ---------- */
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  /* O site usa UMA única família (a mesma do menu do header).
+     `--font-display` é mantido como token para que títulos e textos possam
+     voltar a divergir no futuro sem caçar ocorrências pelo CSS. */
+  --font-display: var(--font-sans);
+
+  --step--1: clamp(0.82rem, 0.79rem + 0.13vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.1rem);
+  --step-1: clamp(1.15rem, 1.08rem + 0.35vw, 1.4rem);
+  --step-2: clamp(1.38rem, 1.24rem + 0.68vw, 1.85rem);
+  --step-3: clamp(1.65rem, 1.4rem + 1.2vw, 2.5rem);
+  --step-4: clamp(1.95rem, 1.5rem + 2.2vw, 3.4rem);
+  --step-5: clamp(2.3rem, 1.6rem + 3.4vw, 4.4rem);
+
+  /* ---------- Espaçamento ---------- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.25rem;
+  --space-xl: 3.5rem;
+  --space-2xl: clamp(3.5rem, 2rem + 6vw, 7rem);
+
+  /* ---------- Layout ---------- */
+  --container: 1200px;
+  --container-narrow: 760px;
+  --gutter: clamp(1rem, 0.5rem + 2.2vw, 2.5rem);
+  --header-height: 72px;
+
+  /* ---------- Movimento ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur: 280ms;
+  --dur-slow: 620ms;
+
+  --z-header: 100;
+  --z-menu: 110;
+  --z-float: 90;
+  --z-overlay: 120;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-height: 84px;
+  }
+}

@@ -1,0 +1,2346 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#294908" />
+
+    <!-- ==================================================================
+         SEO
+         Termo principal: "escola de estética animal em Joinville" — no
+         título (início), na descrição, no H1 e no Schema.org.
+         Mensagem: formação de profissionais capacitados para atender com
+         excelência. Título com até ~60 caracteres e descrição com até ~155,
+         para não serem cortados nos resultados do Google.
+         ================================================================== -->
+    <title>Escola de Estética Animal em Joinville | Giovanella</title>
+    <meta
+      name="description"
+      content="Escola de estética animal em Joinville (SC): 18 cursos presenciais de banho, tosa e especializações. Aulas práticas que formam profissionais de excelência."
+    />
+    <link rel="canonical" href="https://www.escolabanhoetosarosigiovanella.com.br/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Giovanella Escola Estética Animal" />
+    <meta name="geo.region" content="BR-SC" />
+    <meta name="geo.placename" content="Joinville" />
+
+    <!-- Open Graph / redes sociais -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Giovanella Escola Estética Animal" />
+    <meta
+      property="og:title"
+      content="Giovanella — Escola de Estética Animal em Joinville"
+    />
+    <meta
+      property="og:description"
+      content="18 cursos presenciais de banho, tosa e estética animal em Joinville (SC). Aulas práticas para formar profissionais que atendem com excelência."
+    />
+    <meta property="og:url" content="https://www.escolabanhoetosarosigiovanella.com.br/" />
+    <!-- Imagem de compartilhamento: gerada por "npm run fotos" a partir da fachada. -->
+    <meta property="og:image" content="https://www.escolabanhoetosarosigiovanella.com.br/img/social/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Fachada da Giovanella Escola Estética Animal, em Joinville" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Ícones -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Ícone da tela inicial do iPhone: gerado por "npm run fotos". -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+
+    <!-- ==================================================================
+         JAVASCRIPT — ativação progressiva com redes de segurança
+         A classe .js é aplicada ANTES da primeira pintura, pois estados
+         iniciais dependem dela (cursos recolhidos, animações de entrada).
+         Se o script principal NÃO chegar a inicializar, a classe precisa
+         sair — senão o conteúdo que ela esconde ficaria inacessível.
+         Três cenários são cobertos:
+           1. o arquivo falha ao carregar (rede, bloqueador, file://) -> listener
+              de erro em fase de captura;
+           2. navegador sem suporte a ES modules -> <script nomodule>;
+           3. erro em tempo de execução ou carregamento travado -> temporizador,
+              desfeito quando main.js marca .js-ready.
+         Este trecho é ES5 puro de propósito: precisa rodar em QUALQUER navegador.
+         ================================================================== -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add('js');
+
+        // (1) Falha ao CARREGAR o script de módulo: rede, bloqueador, file://.
+        // Erros de recurso não borbulham, mas passam pela fase de CAPTURA do
+        // window. Fica aqui (e não num atributo onerror) porque o build do
+        // Vite descarta atributos onerror de scripts que ele reescreve.
+        window.addEventListener(
+          'error',
+          function (event) {
+            var alvo = event.target;
+            if (alvo && alvo.tagName === 'SCRIPT' && alvo.type === 'module') {
+              root.classList.remove('js');
+            }
+          },
+          true
+        );
+
+        // (3) 8 s cobre conexões lentas; main.js marca .js-ready ao terminar.
+        window.setTimeout(function () {
+          if (!root.classList.contains('js-ready')) {
+            root.classList.remove('js');
+            root.setAttribute('data-js-timeout', '');
+          }
+        }, 8000);
+      })();
+    </script>
+    <script type="module" src="/src/js/main.js"></script>
+    <!-- (2) Navegador sem ES modules: ignora type=module e executa nomodule. -->
+    <script nomodule>
+      document.documentElement.classList.remove('js');
+    </script>
+
+    <!-- ==================================================================
+         DADOS ESTRUTURADOS (Schema.org)
+         Apenas schemas efetivamente aplicáveis ao conteúdo real.
+         A instituição é uma ESCOLA de formação profissional: use somente
+         EducationalOrganization (atividade real) + LocalBusiness (SEO local).
+         NÃO reintroduzir tipos de loja/varejo de produtos para animais —
+         o cliente pediu explicitamente essa separação.
+         NÃO é usado AggregateRating/Review: os depoimentos do site vêm do
+         Google, e avaliações de terceiros não podem ser marcadas como do
+         próprio site (diretrizes do Google).
+         alternateName traz o nome do site anterior, para o Google ligar o
+         novo endereço à reputação já construída.
+         Pendente: horário de funcionamento (openingHoursSpecification),
+         quando a escola informar.
+         Os cursos estão no segundo bloco JSON-LD (tipo Course). Ao incluir,
+         remover ou alterar um curso no HTML, atualize-o também aqui.
+         ================================================================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#website",
+            "url": "https://www.escolabanhoetosarosigiovanella.com.br/",
+            "name": "Giovanella Escola Estética Animal",
+            "inLanguage": "pt-BR",
+            "publisher": { "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business" }
+          },
+          {
+            "@type": ["EducationalOrganization", "LocalBusiness"],
+            "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business",
+            "name": "Giovanella Escola Estética Animal",
+            "alternateName": ["Escola de Banho e Tosa Rosi Giovanella", "Giovanella"],
+            "description": "Escola de estética animal em Joinville (SC) que forma profissionais de banho, tosa e estética animal capacitados para atender clientes com excelência. Cursos presenciais, com aulas teóricas e práticas e foco no bem-estar animal.",
+            "url": "https://www.escolabanhoetosarosigiovanella.com.br/",
+            "logo": "https://www.escolabanhoetosarosigiovanella.com.br/img/Logo-Giovanella.png",
+            "image": [
+              "https://www.escolabanhoetosarosigiovanella.com.br/img/estrutura/fachada.jpg",
+              "https://www.escolabanhoetosarosigiovanella.com.br/img/destaque/instrutora-em-aula.jpg",
+              "https://www.escolabanhoetosarosigiovanella.com.br/img/Logo-Giovanella.png"
+            ],
+            "telephone": "+5547996086955",
+            "hasMap": "https://maps.google.com/?cid=3029923964494888959",
+            "knowsAbout": [
+              "Estética animal",
+              "Banho e tosa",
+              "Tosa à tesoura",
+              "Tosa à máquina",
+              "Tosa de raças",
+              "Bem-estar animal"
+            ],
+            "areaServed": {
+              "@type": "City",
+              "name": "Joinville",
+              "containedInPlace": { "@type": "State", "name": "Santa Catarina" }
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Rua Elly Soares, 511 - Floresta",
+              "addressLocality": "Joinville",
+              "addressRegion": "SC",
+              "postalCode": "89211-715",
+              "addressCountry": "BR"
+            }
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Course",
+            "name": "Curso de Estética Animal",
+            "description": "Curso presencial de 51 horas. Dividido em 3 horas por dia. Aulas de tosa à tesoura e à máquina. Aulas práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT51H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso Básico de Banho e Tosa",
+            "description": "Curso presencial de 36 horas. Dividido em 3 horas por dia. Aulas de tosa à máquina. Aulas práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT36H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Banhista de Animais Domésticos",
+            "description": "Curso presencial de 15 horas. Dividido em 3 horas por dia. Aulas de banho, hidratação e tosa higiênica. Aulas práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT15H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Banho e Tosa Assistido",
+            "description": "Curso presencial assistido de 15 horas. Dividido em 3 horas por dia. Funcionamento de um banho e tosa. Tosas padrões das raças. Aulas assistidas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT15H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Trimming em Golden",
+            "description": "Curso presencial de 9 horas. 3 dias, 3 horas por dia. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT9H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Tosa em Spitz Alemão",
+            "description": "Curso presencial de 6 horas. 2 dias, 3 horas por dia. Tosa 100% tesoura. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Tosa em Chow Chow",
+            "description": "Curso presencial de 6 horas. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Especialização em Pelo Longo",
+            "description": "Curso presencial de 6 horas. 2 dias, 3 horas por dia. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Tosas Premium",
+            "description": "Curso presencial de 6 horas. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Rostinhos Fofinhos",
+            "description": "Curso presencial de 6 horas. 2 dias, 3 horas por dia. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Banho e Tosa em Gatos",
+            "description": "Curso presencial de 3 horas. 1 dia, 3 horas de aula. Uso de tesoura e máquina. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT3H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Groomer Designer",
+            "description": "Curso presencial de 6 horas. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Tintura Pet",
+            "description": "Curso presencial de 3 horas. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT3H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Penteados Pet",
+            "description": "Curso presencial de 6 horas. 2 dias, 3 horas por dia. Aulas práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Fabricação de Laços Pet",
+            "description": "Curso presencial de 3 horas. Aulas práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT3H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Fotografia Pet",
+            "description": "Curso presencial de 3 horas. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT3H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Curso de Primeiros Socorros Pet",
+            "description": "Curso presencial de 6 horas. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Dermatites e Problemas de Pele",
+            "description": "Curso presencial de 6 horas. 2 dias, 3 horas por dia. Aulas teóricas e práticas.",
+            "inLanguage": "pt-BR",
+            "timeRequired": "PT6H",
+            "provider": {
+              "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Onsite",
+              "location": {
+                "@id": "https://www.escolabanhoetosarosigiovanella.com.br/#business"
+              }
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
+
+    <!-- ==================================================================
+         HEADER
+         ================================================================== -->
+    <header class="header" data-header>
+      <div class="container header__inner">
+        <a class="header__brand" href="#inicio" aria-label="Giovanella Escola Estética Animal — ir para o início">
+          <img
+            class="header__logo"
+            src="/img/Logo-Giovanella.png"
+            alt="Giovanella Escola Estética Animal"
+            width="331"
+            height="100"
+            fetchpriority="high"
+          />
+        </a>
+
+        <nav class="nav" aria-label="Navegação principal">
+          <a class="nav__link" href="#inicio" data-nav-link>Início</a>
+          <a class="nav__link" href="#sobre" data-nav-link>Sobre a escola</a>
+          <a class="nav__link" href="#cursos" data-nav-link>Cursos</a>
+          <a class="nav__link" href="#contato" data-nav-link>Contato</a>
+          <a class="nav__link" href="#depoimentos" data-nav-link>Depoimentos</a>
+          <!-- O rótulo abaixo vem de site.config.js → labels.sponsorship -->
+          <a class="nav__link" href="#patriocinio" data-nav-link data-config="labels.sponsorship"
+            >Patriocinio</a
+          >
+        </nav>
+
+        <div class="header__actions">
+          <a
+            class="btn btn--whatsapp header__cta"
+            data-wa="default"
+            data-track="whatsapp_clique"
+            data-track-label="header"
+            href="https://wa.me/5547996086955"
+          >
+            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.38-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.45 9.45 0 0 1-4.8-1.32l-.35-.2-3.57.93.96-3.48-.23-.36a9.4 9.4 0 0 1-1.44-5.03c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 0 1 2.76 6.68c0 5.2-4.24 9.45-9.44 9.45zM20.5 3.49A11.8 11.8 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.85c0 2.09.55 4.13 1.59 5.93L.08 24l6.37-1.67a11.83 11.83 0 0 0 5.59 1.42h.01c6.53 0 11.85-5.32 11.85-11.85 0-3.17-1.23-6.14-3.4-8.41z"
+              />
+            </svg>
+            Fale conosco
+          </a>
+
+          <button
+            class="hamburger"
+            type="button"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Abrir menu de navegação"
+          >
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================================================================
+         MENU MOBILE
+         ================================================================== -->
+    <div class="mobile-menu" id="mobile-menu" data-menu>
+      <button
+        class="mobile-menu__backdrop"
+        type="button"
+        data-menu-backdrop
+        tabindex="-1"
+        aria-label="Fechar menu"
+      ></button>
+
+      <div class="mobile-menu__panel" data-menu-panel role="dialog" aria-modal="true" aria-label="Menu de navegação">
+        <nav aria-label="Navegação mobile">
+          <ul class="mobile-menu__list">
+            <li><a class="mobile-menu__link" href="#inicio">Início</a></li>
+            <li><a class="mobile-menu__link" href="#sobre">Sobre a escola</a></li>
+            <li><a class="mobile-menu__link" href="#cursos">Cursos</a></li>
+            <li><a class="mobile-menu__link" href="#contato">Contato</a></li>
+            <li><a class="mobile-menu__link" href="#depoimentos">Depoimentos</a></li>
+            <li>
+              <a class="mobile-menu__link" href="#patriocinio" data-config="labels.sponsorship"
+                >Patriocinio</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="mobile-menu__actions">
+          <a
+            class="btn btn--whatsapp btn--block"
+            data-wa="default"
+            data-track="whatsapp_clique"
+            data-track-label="menu_mobile"
+            href="https://wa.me/5547996086955"
+            >Falar no WhatsApp</a
+          >
+          <a
+            class="btn btn--secondary btn--block"
+            data-tel
+            data-track="telefone_clique"
+            data-track-label="menu_mobile"
+            href="tel:+5547996086955"
+            >Ligar: <span data-config="contact.phoneDisplay">(47) 99608-6955</span></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- data-paw-seams: o JS cria uma trilha de pegadas em cada emenda
+         entre as seções filhas deste elemento (Experimento 1). -->
+    <main id="main" data-paw-seams>
+      <!-- ================================================================
+           INÍCIO / HERO
+           ================================================================ -->
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="container hero__grid">
+          <div>
+            <!-- A linha de apoio fica DENTRO do H1: assim o termo principal
+                 ("escola de estética animal" + "Joinville") faz parte do título
+                 da página para o Google, sem mudar o visual. -->
+            <h1 class="hero__title" id="hero-title">
+              <span class="section__eyebrow hero__kicker" data-reveal
+                >Escola de Estética Animal · Joinville/SC</span
+              >
+              <span class="hero__headline" data-reveal
+                >Formação profissional em <em>estética animal</em> com cuidado de verdade</span
+              >
+            </h1>
+
+            <!-- Subtítulo: só afirmações comprováveis pelos pôsteres dos cursos
+                 (18 cursos, presenciais, do banho às especializações por raça,
+                 com aulas práticas). Sem números inventados de alunos ou anos. -->
+            <p class="hero__subtitle" data-reveal>
+              <strong>Transforme o amor pelos animais em profissão.</strong>
+              Do primeiro banho à tosa de raça, você aprende na prática, em turmas presenciais
+              em Joinville — são 18 cursos para começar do zero ou se especializar.
+            </p>
+
+            <div class="hero__actions" data-reveal>
+              <a class="btn btn--primary" href="#cursos" data-track="cta_clique" data-track-label="hero_cursos">
+                Conheça nossos cursos
+              </a>
+              <a
+                class="btn btn--whatsapp"
+                data-wa="default"
+                data-track="whatsapp_clique"
+                data-track-label="hero"
+                href="https://wa.me/5547996086955"
+              >
+                <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.38-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.45 9.45 0 0 1-4.8-1.32l-.35-.2-3.57.93.96-3.48-.23-.36a9.4 9.4 0 0 1-1.44-5.03c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 0 1 2.76 6.68c0 5.2-4.24 9.45-9.44 9.45zM20.5 3.49A11.8 11.8 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.85c0 2.09.55 4.13 1.59 5.93L.08 24l6.37-1.67a11.83 11.83 0 0 0 5.59 1.42h.01c6.53 0 11.85-5.32 11.85-11.85 0-3.17-1.23-6.14-3.4-8.41z"
+                  />
+                </svg>
+                Fale conosco
+              </a>
+            </div>
+
+            <!-- Indicadores de confiança.
+                 Só há afirmações verificáveis aqui; os demais estão marcados
+                 como pendentes para evitar informação comercial inventada. -->
+            <ul class="trust" data-reveal>
+              <li class="trust__item">
+                <svg class="trust__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+                </svg>
+                <span>
+                  <span class="trust__label">Joinville · Bairro Floresta</span>
+                  <span class="trust__desc">Rua Elly Soares, 511</span>
+                </span>
+              </li>
+              <li class="trust__item">
+                <svg class="trust__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 15.5a11.36 11.36 0 0 1-3.57-.57 1 1 0 0 0-1.02.24l-2.2 2.2a15.05 15.05 0 0 1-6.59-6.59l2.2-2.2a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1 17 17 0 0 0 17 17 1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z" />
+                </svg>
+                <span>
+                  <span class="trust__label">Atendimento direto</span>
+                  <span class="trust__desc">WhatsApp e telefone</span>
+                </span>
+              </li>
+              <li class="trust__item">
+                <svg class="trust__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zM5 13.18v3.51L12 20l7-3.31v-3.51l-7 3.18-7-3.18z" />
+                </svg>
+                <span>
+                  <span class="trust__label">Formação prática</span>
+                  <span class="trust__desc">18 cursos presenciais</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hero__media" data-reveal>
+            <!-- Foto de destaque (é o LCP da página): carregamento prioritário,
+                 sem lazy-loading. Original em fotos/destaque/. -->
+            <figure class="photo hero__photo">
+              <picture>
+                <source type="image/webp" srcset="/img/destaque/instrutora-em-aula.webp" />
+                <img
+                  src="/img/destaque/instrutora-em-aula.jpg"
+                  alt="Profissional da escola fazendo tosa à tesoura em um poodle"
+                  width="600"
+                  height="619"
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              </picture>
+            </figure>
+
+            <div class="hero__badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z" />
+              </svg>
+              <span>
+                <strong>Estética animal</strong><br />
+                <span class="trust__desc">Formação profissional em Joinville</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           SOBRE A ESCOLA
+           ================================================================ -->
+      <section class="section section--alt" id="sobre" aria-labelledby="sobre-title">
+        <div class="container about__grid">
+          <div>
+            <p class="section__eyebrow" data-reveal>Sobre a escola</p>
+            <h2 id="sobre-title" data-reveal>Uma escola feita para quem leva o cuidado a sério</h2>
+
+            <!-- Textos desta seção: adaptados do "Sobre" do site anterior da
+                 escola (fornecido pelo cliente). A menção à origem comercial
+                 da escola foi retirada, conforme o posicionamento (README 9b). -->
+            <p class="section__lead" data-reveal>
+              A Giovanella nasceu para elevar o padrão do banho e tosa. Para nós, habilidade não é
+              raspar um cão: é entregar uma tosa de luxo, bem&#8209;acabada e em pouco tempo, e uma
+              manutenção semanal eficaz — conhecendo a fundo produtos de alta qualidade para que
+              cada pet tenha pelos bem cuidados e hidratados.
+            </p>
+
+            <div class="values">
+              <div class="value" data-reveal>
+                <div class="value__icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21s-7.5-4.6-9.3-9A5.3 5.3 0 0 1 12 6.6 5.3 5.3 0 0 1 21.3 12c-1.8 4.4-9.3 9-9.3 9z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="value__title">Missão</h3>
+                  <p class="value__text">
+                    Colocar no mercado profissionais de alta qualidade, prontos para atender às
+                    necessidades de cada cliente — inclusive dos mais exigentes.
+                  </p>
+                </div>
+              </div>
+
+              <div class="value" data-reveal>
+                <div class="value__icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1.2 14.4L7 11.6l1.4-1.4 2.4 2.4 5-5L17.2 9l-6.4 6.4z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="value__title">Valores</h3>
+                  <p class="value__text">
+                    Inovação e bem-estar animal. Ensinamos uma visão humanizada: trabalhar sem
+                    focinheiras, contenção, gaiolas ou técnicas de sedação, respeitando os
+                    sentimentos do animal sem perder o profissionalismo e o cuidado com os pelos.
+                  </p>
+                </div>
+              </div>
+
+              <div class="value" data-reveal>
+                <div class="value__icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zM5 13.18v3.51L12 20l7-3.31v-3.51l-7 3.18-7-3.18z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="value__title">Formação profissional</h3>
+                  <p class="value__text">
+                    Aulas teóricas para conhecer a fundo os produtos e as raças, e aulas práticas
+                    para desenvolver a técnica de tesoura e a criatividade com os equipamentos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mosaico da estrutura. A primeira foto ocupa a largura toda (16:9);
+               as demais formam uma grade 2×2 de quadrados. Originais em
+               fotos/estrutura/ e fotos/equipe/ — ver "npm run fotos". -->
+          <div class="about__gallery" data-reveal>
+            <figure class="photo">
+              <picture>
+                <source type="image/webp" srcset="/img/estrutura/fachada-640.webp 640w, /img/estrutura/fachada.webp 1052w" sizes="(min-width: 960px) 560px, calc(100vw - 2rem)" />
+                <img
+                  src="/img/estrutura/fachada.jpg"
+                  srcset="/img/estrutura/fachada-640.jpg 640w, /img/estrutura/fachada.jpg 1052w"
+                  sizes="(min-width: 960px) 560px, calc(100vw - 2rem)"
+                  alt="Fachada do estabelecimento da Giovanella, em Joinville"
+                  width="1052"
+                  height="592"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="photo__caption">Fachada</figcaption>
+            </figure>
+            <figure class="photo">
+              <picture>
+                <source type="image/webp" srcset="/img/estrutura/recepcao.webp" />
+                <img
+                  src="/img/estrutura/recepcao.jpg"
+                  alt="Recepção da escola, com balcão de atendimento"
+                  width="598"
+                  height="598"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="photo__caption">Recepção</figcaption>
+            </figure>
+            <figure class="photo">
+              <picture>
+                <source type="image/webp" srcset="/img/estrutura/sala-de-tosa.webp" />
+                <img
+                  src="/img/estrutura/sala-de-tosa.jpg"
+                  alt="Sala de tosa com mesas de tosa e secadores"
+                  width="584"
+                  height="584"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="photo__caption">Sala de tosa</figcaption>
+            </figure>
+            <figure class="photo">
+              <picture>
+                <source type="image/webp" srcset="/img/estrutura/banho.webp" />
+                <img
+                  src="/img/estrutura/banho.jpg"
+                  alt="Área de banho com banheiras e duchas"
+                  width="598"
+                  height="598"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="photo__caption">Banho</figcaption>
+            </figure>
+            <figure class="photo">
+              <picture>
+                <source type="image/webp" srcset="/img/equipe/instrutora.webp" />
+                <img
+                  src="/img/equipe/instrutora.jpg"
+                  alt="Profissional da escola ao lado de um pastor-alemão"
+                  width="388"
+                  height="388"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="photo__caption">Equipe</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           CURSOS — conteúdo transcrito dos pôsteres oficiais da escola.
+           A imagem de cada card é a foto do pôster, recortada; o texto é
+           HTML de verdade (indexável e acessível), não a arte do pôster.
+           Para adicionar um curso: duplique um <article class="card
+           course-card">, ajuste título, tags, lista e o atributo
+           data-course do botão (é ele que vai na mensagem do WhatsApp).
+           Lembre de atualizar também a lista "Course" do Schema.org no
+           <head> e as opções do formulário de contato.
+           ================================================================ -->
+      <section class="section" id="cursos" aria-labelledby="cursos-title">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <p class="section__eyebrow" data-reveal>Cursos</p>
+            <h2 id="cursos-title" data-reveal>Cursos de estética animal e banho e tosa</h2>
+            <p class="section__lead" data-reveal>
+              Formação completa e especializações por raça e técnica. Todos os cursos são
+              presenciais, em Joinville.
+            </p>
+          </div>
+
+          <!-- ---------- Cursos em destaque (sempre visíveis) ----------
+               As formações mais longas da escola. Para trocar a vitrine,
+               mova um <article> entre esta grade e a de baixo. -->
+          <div class="grid course-grid">
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/estetica-animal.webp" />
+                  <img
+                    src="/img/cursos/estetica-animal.jpg"
+                    alt="Yorkshire sendo tosado à tesoura"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Estética Animal</h3>
+                <div class="course-card__meta">
+                  <span class="tag">51 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Dividido em 3 horas por dia</li>
+                  <li>Aulas de tosa à tesoura e à máquina</li>
+                  <li>Aulas práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Estética Animal"
+                    data-track="curso_interesse"
+                    data-track-label="curso_01_estetica-animal"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/basico-banho-e-tosa.webp" />
+                  <img
+                    src="/img/cursos/basico-banho-e-tosa.jpg"
+                    alt="Máquina de tosa sobre a mesa, entre pelos cortados"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso Básico de Banho e Tosa</h3>
+                <div class="course-card__meta">
+                  <span class="tag">36 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Dividido em 3 horas por dia</li>
+                  <li>Aulas de tosa à máquina</li>
+                  <li>Aulas práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso Básico de Banho e Tosa"
+                    data-track="curso_interesse"
+                    data-track-label="curso_02_basico-banho-e-tosa"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/banhista-animais-domesticos.webp" />
+                  <img
+                    src="/img/cursos/banhista-animais-domesticos.jpg"
+                    alt="Cão corgi recebendo banho com espuma"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Banhista de Animais Domésticos</h3>
+                <div class="course-card__meta">
+                  <span class="tag">15 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Dividido em 3 horas por dia</li>
+                  <li>Aulas de banho, hidratação e tosa higiênica</li>
+                  <li>Aulas práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Banhista de Animais Domésticos"
+                    data-track="curso_interesse"
+                    data-track-label="curso_03_banhista-animais-domesticos"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/banho-e-tosa-assistido.webp" />
+                  <img
+                    src="/img/cursos/banho-e-tosa-assistido.jpg"
+                    alt="Profissional com secador ao lado de um golden retriever na mesa de tosa"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Banho e Tosa Assistido</h3>
+                <div class="course-card__meta">
+                  <span class="tag">15 horas</span>
+                  <span class="tag">Presencial assistido</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Dividido em 3 horas por dia</li>
+                  <li>Funcionamento de um banho e tosa</li>
+                  <li>Tosas padrões das raças</li>
+                  <li>Aulas assistidas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Banho e Tosa Assistido"
+                    data-track="curso_interesse"
+                    data-track-label="curso_04_banho-e-tosa-assistido"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- ---------- Demais cursos (recolhidos) ----------
+               Ficam no HTML sempre — o buscador indexa todos os cursos. Sem
+               JavaScript aparecem normalmente; com JavaScript o CSS os recolhe
+               antes da primeira pintura (regra `.js .courses__extra`). -->
+          <div class="grid course-grid courses__extra" id="cursos-extras" data-courses-extra>
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/trimming-em-golden.webp" />
+                  <img
+                    src="/img/cursos/trimming-em-golden.jpg"
+                    alt="Golden retriever deitado"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Trimming em Golden</h3>
+                <div class="course-card__meta">
+                  <span class="tag">9 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>3 dias, 3 horas por dia</li>
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Trimming em Golden"
+                    data-track="curso_interesse"
+                    data-track-label="curso_05_trimming-em-golden"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/tosa-em-spitz-alemao.webp" />
+                  <img
+                    src="/img/cursos/tosa-em-spitz-alemao.jpg"
+                    alt="Spitz alemão branco sendo tosado na mesa"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Tosa em Spitz Alemão</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>2 dias, 3 horas por dia</li>
+                  <li>Tosa 100% tesoura</li>
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Tosa em Spitz Alemão"
+                    data-track="curso_interesse"
+                    data-track-label="curso_06_tosa-em-spitz-alemao"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/tosa-em-chow-chow.webp" />
+                  <img
+                    src="/img/cursos/tosa-em-chow-chow.jpg"
+                    alt="Chow chow em pé sobre a grama"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Tosa em Chow Chow</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Tosa em Chow Chow"
+                    data-track="curso_interesse"
+                    data-track-label="curso_07_tosa-em-chow-chow"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/especializacao-pelo-longo.webp" />
+                  <img
+                    src="/img/cursos/especializacao-pelo-longo.jpg"
+                    alt="Shih tzu de pelo longo e liso"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Especialização em Pelo Longo</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>2 dias, 3 horas por dia</li>
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Especialização em Pelo Longo"
+                    data-track="curso_interesse"
+                    data-track-label="curso_08_especializacao-pelo-longo"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/tosas-premium.webp" />
+                  <img
+                    src="/img/cursos/tosas-premium.jpg"
+                    alt="Filhote de pelo branco recém-tosado"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Tosas Premium</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Tosas Premium"
+                    data-track="curso_interesse"
+                    data-track-label="curso_09_tosas-premium"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/rostinhos-fofinhos.webp" />
+                  <img
+                    src="/img/cursos/rostinhos-fofinhos.jpg"
+                    alt="Rosto de poodle branco com tosa arredondada"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Rostinhos Fofinhos</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>2 dias, 3 horas por dia</li>
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Rostinhos Fofinhos"
+                    data-track="curso_interesse"
+                    data-track-label="curso_10_rostinhos-fofinhos"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/banho-e-tosa-em-gatos.webp" />
+                  <img
+                    src="/img/cursos/banho-e-tosa-em-gatos.jpg"
+                    alt="Gato branco de pelo longo sendo escovado"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Banho e Tosa em Gatos</h3>
+                <div class="course-card__meta">
+                  <span class="tag">3 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>1 dia, 3 horas de aula</li>
+                  <li>Uso de tesoura e máquina</li>
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Banho e Tosa em Gatos"
+                    data-track="curso_interesse"
+                    data-track-label="curso_11_banho-e-tosa-em-gatos"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/groomer-designer.webp" />
+                  <img
+                    src="/img/cursos/groomer-designer.jpg"
+                    alt="Profissional segurando uma tesoura de tosa"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Groomer Designer</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Groomer Designer"
+                    data-track="curso_interesse"
+                    data-track-label="curso_12_groomer-designer"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/tintura-pet.webp" />
+                  <img
+                    src="/img/cursos/tintura-pet.jpg"
+                    alt="Shih tzu com a cauda tingida de azul, rosa e amarelo"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Tintura Pet</h3>
+                <div class="course-card__meta">
+                  <span class="tag">3 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Tintura Pet"
+                    data-track="curso_interesse"
+                    data-track-label="curso_13_tintura-pet"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/penteados-pet.webp" />
+                  <img
+                    src="/img/cursos/penteados-pet.jpg"
+                    alt="Penteado com laços e elásticos na cabeça de um cão"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Penteados Pet</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>2 dias, 3 horas por dia</li>
+                  <li>Aulas práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Penteados Pet"
+                    data-track="curso_interesse"
+                    data-track-label="curso_14_penteados-pet"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/lacos-pet.webp" />
+                  <img
+                    src="/img/cursos/lacos-pet.jpg"
+                    alt="Mãos montando um laço, com pistola de cola quente ao lado"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Fabricação de Laços Pet</h3>
+                <div class="course-card__meta">
+                  <span class="tag">3 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Aulas práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Fabricação de Laços Pet"
+                    data-track="curso_interesse"
+                    data-track-label="curso_15_lacos-pet"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/fotografia-pet.webp" />
+                  <img
+                    src="/img/cursos/fotografia-pet.jpg"
+                    alt="Fotógrafo registrando um lulu-da-pomerânia"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Fotografia Pet</h3>
+                <div class="course-card__meta">
+                  <span class="tag">3 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Fotografia Pet"
+                    data-track="curso_interesse"
+                    data-track-label="curso_16_fotografia-pet"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/primeiros-socorros-pet.webp" />
+                  <img
+                    src="/img/cursos/primeiros-socorros-pet.jpg"
+                    alt="Golden retriever segurando um kit de primeiros socorros"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Curso de Primeiros Socorros Pet</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Curso de Primeiros Socorros Pet"
+                    data-track="curso_interesse"
+                    data-track-label="curso_17_primeiros-socorros-pet"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card course-card" data-reveal>
+              <div class="course-card__media">
+                <picture>
+                  <source type="image/webp" srcset="/img/cursos/dermatites-e-problemas-de-pele.webp" />
+                  <img
+                    src="/img/cursos/dermatites-e-problemas-de-pele.jpg"
+                    alt="Mão com luva examinando uma lesão na pele de um cão"
+                    width="720"
+                    height="378"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <div class="card__body">
+                <h3 class="card__title">Dermatites e Problemas de Pele</h3>
+                <div class="course-card__meta">
+                  <span class="tag">6 horas</span>
+                  <span class="tag">Presencial</span>
+                </div>
+                <ul class="course-card__list">
+                  <li>2 dias, 3 horas por dia</li>
+                  <li>Aulas teóricas e práticas</li>
+                </ul>
+                <div class="course-card__footer">
+                  <a
+                    class="btn btn--whatsapp btn--block"
+                    data-wa="course"
+                    data-course="Dermatites e Problemas de Pele"
+                    data-track="curso_interesse"
+                    data-track-label="curso_18_dermatites-e-problemas-de-pele"
+                    href="https://wa.me/5547996086955"
+                    >Tenho interesse</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- O botão só existe quando há JavaScript: sem ele não haveria
+               nada para expandir, já que todos os cursos estariam à vista. -->
+          <div class="courses__actions">
+            <button
+              class="btn btn--secondary courses__toggle"
+              type="button"
+              data-courses-toggle
+              aria-expanded="false"
+              aria-controls="cursos-extras"
+            >
+              <span data-courses-toggle-label>Ver mais cursos</span>
+              <svg class="btn__icon courses__toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 15.5 5.3 8.8l1.4-1.4 5.3 5.3 5.3-5.3 1.4 1.4z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           GALERIA — turmas, conclusões de curso e procedimentos
+           Layout em colunas que PRESERVA a proporção de cada foto (em pé
+           ou deitada), sem cortar pessoas.
+           Para adicionar uma foto:
+             1. coloque o original em fotos/galeria/;
+             2. acrescente-o à lista GALERIA em scripts/otimizar-fotos.mjs;
+             3. rode "npm run fotos" e copie largura/altura impressas;
+             4. duplique um <figure class="gallery__item"> abaixo.
+           Tags em uso: "Conclusão de curso", "Turma", "Procedimento".
+           ================================================================ -->
+      <section class="section section--alt" id="galeria" aria-labelledby="galeria-title">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <p class="section__eyebrow" data-reveal>Galeria</p>
+            <h2 id="galeria-title" data-reveal>Turmas, conclusões e procedimentos</h2>
+            <p class="section__lead" data-reveal>
+              Momentos reais da escola: turmas em aula prática, entregas de certificado e
+              resultados de procedimentos.
+            </p>
+          </div>
+
+          <div class="gallery" data-reveal>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/01-conclusao-certificado.webp" />
+                <img
+                  src="/img/galeria/01-conclusao-certificado.jpg"
+                  alt="Aluno segurando o certificado de conclusão ao lado da instrutora, cada um com um cão no colo"
+                  width="270"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Conclusão de curso</span>
+                Aluno com o certificado em mãos
+              </figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/02-turma-aula-pratica.webp" />
+                <img
+                  src="/img/galeria/02-turma-aula-pratica.jpg"
+                  alt="Alunos com modelos de pelúcia sobre a mesa de tosa, com a instrutora à frente"
+                  width="360"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Turma</span>
+                Aula prática com modelos de treino
+              </figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/03-turma-em-sala.webp" />
+                <img
+                  src="/img/galeria/03-turma-em-sala.jpg"
+                  alt="Grupo de alunos sorrindo para a foto dentro da sala de aula"
+                  width="270"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Turma</span>
+                Turma reunida em sala
+              </figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/04-turma-com-spitz.webp" />
+                <img
+                  src="/img/galeria/04-turma-com-spitz.jpg"
+                  alt="Alunos de avental verde segurando cães da raça spitz"
+                  width="360"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Turma</span>
+                Turma com cães da raça spitz
+              </figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/05-turma-com-schnauzers.webp" />
+                <img
+                  src="/img/galeria/05-turma-com-schnauzers.jpg"
+                  alt="Alunos ao redor das mesas de tosa com cães schnauzer"
+                  width="360"
+                  height="270"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Turma</span>
+                Turma em aula prática
+              </figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/06-momentos-na-escola.webp" />
+                <img
+                  src="/img/galeria/06-momentos-na-escola.jpg"
+                  alt="Três pessoas sorrindo, uma delas segurando um poodle branco"
+                  width="516"
+                  height="367"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Na escola</span>
+                Momentos na escola
+              </figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/07-procedimento-pelo-longo.webp" />
+                <img
+                  src="/img/galeria/07-procedimento-pelo-longo.jpg"
+                  alt="Profissional escovando um cão branco de pelo longo na mesa de tosa"
+                  width="321"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Procedimento</span>
+                Escovação em pelo longo
+              </figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <picture>
+                <source type="image/webp" srcset="/img/galeria/08-procedimento-tintura.webp" />
+                <img
+                  src="/img/galeria/08-procedimento-tintura.jpg"
+                  alt="Cão com a cauda tingida de azul e rosa, deitado na mesa de tosa"
+                  width="360"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="gallery__caption">
+                <span class="gallery__tag">Procedimento</span>
+                Tintura pet
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           CONTATO
+           ================================================================ -->
+      <section class="section" id="contato" aria-labelledby="contato-title">
+        <div class="container">
+          <div class="section__header">
+            <p class="section__eyebrow" data-reveal>Contato</p>
+            <h2 id="contato-title" data-reveal>Fale com a Giovanella</h2>
+            <p class="section__lead" data-reveal>
+              O atendimento acontece pelo WhatsApp. Chame a qualquer momento para tirar dúvidas
+              sobre cursos, turmas e matrículas.
+            </p>
+          </div>
+
+          <div class="contact__grid">
+            <div>
+              <div class="contact__channels">
+                <a
+                  class="channel channel--whatsapp"
+                  data-wa="default"
+                  data-track="whatsapp_clique"
+                  data-track-label="contato"
+                  href="https://wa.me/5547996086955"
+                  data-reveal
+                >
+                  <span class="channel__icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.38-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.45 9.45 0 0 1-4.8-1.32l-.35-.2-3.57.93.96-3.48-.23-.36a9.4 9.4 0 0 1-1.44-5.03c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 0 1 2.76 6.68c0 5.2-4.24 9.45-9.44 9.45zM20.5 3.49A11.8 11.8 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.85c0 2.09.55 4.13 1.59 5.93L.08 24l6.37-1.67a11.83 11.83 0 0 0 5.59 1.42h.01c6.53 0 11.85-5.32 11.85-11.85 0-3.17-1.23-6.14-3.4-8.41z"
+                      />
+                    </svg>
+                  </span>
+                  <span>
+                    <span class="channel__label">WhatsApp</span>
+                    <span class="channel__value" data-config="contact.phoneDisplay">(47) 99608-6955</span>
+                    <span class="channel__note">Toque para conversar agora</span>
+                  </span>
+                </a>
+
+                <!-- O canal de TELEFONE foi removido desta seção a pedido do
+                     cliente: o atendimento é centralizado no WhatsApp, que usa
+                     o mesmo número. Não reintroduzir sem confirmar. -->
+
+                <div class="channel" data-reveal>
+                  <span class="channel__icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+                    </svg>
+                  </span>
+                  <span>
+                    <span class="channel__label">Endereço</span>
+                    <address class="channel__value">
+                      Rua Elly Soares, 511
+                    </address>
+                    <span class="channel__note">Bairro Floresta · Joinville - SC</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- ---------- Google Maps (carregado sob demanda) ---------- -->
+              <div class="map" data-map data-reveal>
+                <button class="map__facade" type="button" data-map-facade>
+                  <svg class="map__pin" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+                  </svg>
+                  <strong>Ver a localização no mapa</strong>
+                  <span class="channel__note">
+                    O mapa do Google só é carregado após o seu clique.
+                  </span>
+                </button>
+              </div>
+
+              <p class="contact__directions">
+                <a
+                  class="btn btn--secondary"
+                  data-directions
+                  data-track="como_chegar_clique"
+                  href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Elly%20Soares%2C%20511%2C%20Bairro%20Floresta%2C%20Joinville%20-%20SC%2C%20Brasil"
+                  >Como chegar</a
+                >
+              </p>
+            </div>
+
+            <!-- ---------- Formulário de interesse ---------- -->
+            <div class="form-card" data-reveal>
+              <h3 class="form-card__title">Prefere organizar antes de chamar?</h3>
+              <p class="channel__note form-card__intro">
+                Preencha os campos e o WhatsApp abrirá com sua mensagem pronta.
+              </p>
+
+              <!-- `novalidate`: a validação é feita em JS para exibir mensagens
+                   acessíveis e consistentes em todos os navegadores. -->
+              <!-- Sem JavaScript o formulário não consegue abrir o WhatsApp.
+                   Ele fica oculto (CSS: html:not(.js)) e este aviso aparece
+                   no lugar — evitando que nome e telefone fossem enviados na
+                   URL pelo envio padrão do navegador. -->
+              <p class="form__nojs">
+                Para enviar sua mensagem,
+                <a href="https://wa.me/5547996086955" target="_blank" rel="noopener noreferrer"
+                  >fale com a gente direto pelo WhatsApp</a
+                >.
+              </p>
+
+              <!-- method="post": se o formulário for enviado sem o JS, os dados
+                   não vão para a URL (histórico, logs). A CSP ainda bloqueia o
+                   envio de vez (form-action 'none' em vercel.json). -->
+              <form class="form" data-interest-form method="post" novalidate>
+                <div class="field">
+                  <label class="field__label" for="form-nome">
+                    Nome <span class="field__required" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="field__control"
+                    id="form-nome"
+                    name="nome"
+                    type="text"
+                    maxlength="80"
+                    autocomplete="name"
+                    required
+                    aria-describedby="form-nome-error"
+                  />
+                  <p class="field__error" id="form-nome-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="form-telefone">
+                    Telefone <span class="field__required" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="field__control"
+                    id="form-telefone"
+                    name="telefone"
+                    type="tel"
+                    inputmode="tel"
+                    maxlength="20"
+                    autocomplete="tel"
+                    placeholder="(47) 99999-9999"
+                    required
+                    aria-describedby="form-telefone-error"
+                  />
+                  <p class="field__error" id="form-telefone-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="form-assunto">
+                    Assunto / interesse <span class="field__required" aria-hidden="true">*</span>
+                  </label>
+                  <select
+                    class="field__control"
+                    id="form-assunto"
+                    name="assunto"
+                    required
+                    aria-describedby="form-assunto-error"
+                  >
+                    <option value="">Selecione uma opção</option>
+                    <optgroup label="Cursos">
+                      <option value="Curso de Estética Animal">Curso de Estética Animal</option>
+                      <option value="Curso Básico de Banho e Tosa">Curso Básico de Banho e Tosa</option>
+                      <option value="Curso de Banhista de Animais Domésticos">Curso de Banhista de Animais Domésticos</option>
+                      <option value="Curso de Banho e Tosa Assistido">Curso de Banho e Tosa Assistido</option>
+                      <option value="Curso de Trimming em Golden">Curso de Trimming em Golden</option>
+                      <option value="Curso de Tosa em Spitz Alemão">Curso de Tosa em Spitz Alemão</option>
+                      <option value="Curso de Tosa em Chow Chow">Curso de Tosa em Chow Chow</option>
+                      <option value="Especialização em Pelo Longo">Especialização em Pelo Longo</option>
+                      <option value="Curso de Tosas Premium">Curso de Tosas Premium</option>
+                      <option value="Curso de Rostinhos Fofinhos">Curso de Rostinhos Fofinhos</option>
+                      <option value="Curso de Banho e Tosa em Gatos">Curso de Banho e Tosa em Gatos</option>
+                      <option value="Curso de Groomer Designer">Curso de Groomer Designer</option>
+                      <option value="Curso de Tintura Pet">Curso de Tintura Pet</option>
+                      <option value="Penteados Pet">Penteados Pet</option>
+                      <option value="Curso de Fabricação de Laços Pet">Curso de Fabricação de Laços Pet</option>
+                      <option value="Curso de Fotografia Pet">Curso de Fotografia Pet</option>
+                      <option value="Curso de Primeiros Socorros Pet">Curso de Primeiros Socorros Pet</option>
+                      <option value="Dermatites e Problemas de Pele">Dermatites e Problemas de Pele</option>
+                    </optgroup>
+                    <optgroup label="Outros assuntos">
+                      <option value="turmas e matrículas">Turmas e matrículas</option>
+                      <option value="parceria ou patrocínio">Parceria ou patrocínio</option>
+                      <option value="outro assunto">Outro assunto</option>
+                    </optgroup>
+                  </select>
+                  <p class="field__error" id="form-assunto-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="form-mensagem">Mensagem</label>
+                  <textarea
+                    class="field__control"
+                    id="form-mensagem"
+                    name="mensagem"
+                    maxlength="600"
+                    aria-describedby="form-mensagem-error form-mensagem-hint"
+                  ></textarea>
+                  <p class="field__counter" data-form-counter aria-hidden="true">0/600</p>
+                  <p class="field__hint" id="form-mensagem-hint">Opcional. Máximo de 600 caracteres.</p>
+                  <p class="field__error" id="form-mensagem-error" role="alert"></p>
+                </div>
+
+                <!-- Honeypot: invisível para pessoas, atrativo para bots. -->
+                <div class="honeypot" aria-hidden="true">
+                  <label for="form-site">Não preencha este campo</label>
+                  <input id="form-site" name="site" type="text" tabindex="-1" autocomplete="off" data-honeypot />
+                </div>
+
+                <button class="btn btn--whatsapp btn--block" type="submit" data-form-submit>
+                  Continuar pelo WhatsApp
+                </button>
+
+                <p class="form__status" data-form-status role="status" aria-live="polite"></p>
+
+                <p class="privacy-note">
+                  Os dados digitados são usados apenas para montar a mensagem enviada ao WhatsApp.
+                  Nada é armazenado neste site e nenhum e-mail é enviado.
+                  <a href="/privacidade.html">Política de Privacidade</a>.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           DEPOIMENTOS — avaliações REAIS do perfil da escola no Google
+           Transcritas literalmente (grafia e emojis originais). Não edite o
+           texto de uma avaliação: corte-a ou mantenha-a como está.
+           Nome exibido: primeiro nome + inicial do sobrenome (privacidade).
+           Para adicionar: duplique um <article class="testimonial">.
+           Schema.org: avaliações de terceiros NÃO podem ser marcadas como
+           Review/AggregateRating do próprio site (diretrizes do Google).
+           ================================================================ -->
+      <section class="section section--alt" id="depoimentos" aria-labelledby="depoimentos-title">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <p class="section__eyebrow" data-reveal>Depoimentos</p>
+            <h2 id="depoimentos-title" data-reveal>O que dizem sobre a escola</h2>
+            <p class="section__lead" data-reveal>
+              Avaliações de alunos no Google, com as palavras de quem já passou pelas nossas
+              turmas.
+            </p>
+          </div>
+
+          <!-- Carrossel contínuo (src/js/modules/marquee.js): os cards deslizam
+               da direita para a esquerda, com as bordas esmaecidas. O JS
+               duplica os cards para o loop sem emenda — edite só os originais.
+               Sem JS ou com "reduzir movimento": faixa parada, rolável.
+               Sem botão de pausa (decisão do cliente): a rolagem pausa com o
+               mouse por cima, com um toque (tabindex="0" faz o toque dar foco)
+               e ao chegar pelo teclado. Não remova o tabindex. -->
+          <div
+            class="marquee"
+            data-marquee
+            data-reveal
+            role="region"
+            aria-label="Avaliações de alunos no Google"
+            tabindex="0"
+          >
+            <div class="marquee__track" data-marquee-track>
+            <article class="testimonial">
+              <div class="testimonial__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+              </div>
+              <blockquote class="testimonial__quote">
+                <p>Professora Rosi extremamente maravilhosa, dedicada ao seu trabalho e alunos me ensinou tudo muito bem, queria agradecer a Laís e Edinei também que me acolheram super bem! 🫶🫶</p>
+              </blockquote>
+              <div class="testimonial__person">
+                <span class="testimonial__avatar" aria-hidden="true">G</span>
+                <span>
+                  <span class="testimonial__name">Gabriella P.</span>
+                  <span class="testimonial__role">Avaliação no Google</span>
+                </span>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="testimonial__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+              </div>
+              <blockquote class="testimonial__quote">
+                <p>Super recomendado e sem falar como é uma escola profissional e com a Professora Rosi que é incrível. Entrei sem saber nada e estou saindo um profissional 🥰🤩</p>
+              </blockquote>
+              <div class="testimonial__person">
+                <span class="testimonial__avatar" aria-hidden="true">R</span>
+                <span>
+                  <span class="testimonial__name">Romário G.</span>
+                  <span class="testimonial__role">Avaliação no Google</span>
+                </span>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="testimonial__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+              </div>
+              <blockquote class="testimonial__quote">
+                <p>As aulas são muito boas e todas práticas para os alunos aprenderem ainda mais, estou amando fazer o curso de Estética Animal e ansiosa para me formar! Pretendo fazer outros de especializações e Auxiliar Veterinário também que a escola oferece 👏💖💗</p>
+              </blockquote>
+              <div class="testimonial__person">
+                <span class="testimonial__avatar" aria-hidden="true">A</span>
+                <span>
+                  <span class="testimonial__name">Andrieli O.</span>
+                  <span class="testimonial__role">Curso de Estética Animal</span>
+                  <span class="testimonial__role">Avaliação no Google</span>
+                </span>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="testimonial__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+              </div>
+              <blockquote class="testimonial__quote">
+                <p>Professores super atenciosos, estão sempre ao seu lado para todas as dúvidas para indicar a forma correta de aplicar a tosa!</p>
+                <p>Espero poder voltar para fazer muitos cursos, valor acessível, local adequado e muita simpatia!</p>
+              </blockquote>
+              <div class="testimonial__person">
+                <span class="testimonial__avatar" aria-hidden="true">M</span>
+                <span>
+                  <span class="testimonial__name">Munira V.</span>
+                  <span class="testimonial__role">Avaliação no Google</span>
+                </span>
+              </div>
+            </article>
+
+            <article class="testimonial">
+              <div class="testimonial__stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6L12 2z"/></svg>
+              </div>
+              <blockquote class="testimonial__quote">
+                <p>Ta maravilhosa a experiência todos são ótimos os professores.</p>
+              </blockquote>
+              <div class="testimonial__person">
+                <span class="testimonial__avatar" aria-hidden="true">V</span>
+                <span>
+                  <span class="testimonial__name">Vanessa V.</span>
+                  <span class="testimonial__role">Avaliação no Google</span>
+                </span>
+              </div>
+            </article>
+            </div>
+          </div>
+
+          <div class="testimonials__actions" data-reveal>
+            <a
+              class="btn btn--secondary"
+              href="https://www.google.com/search?q=giovanella+escola+est%C3%A9tica+animal#lrd=0x94deb19f3991057f:0x2a0c73cae0293fff,1,,,,"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="avaliacoes_google_clique"
+              >Ver todas as avaliações no Google</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PATRIOCINIO
+           O rótulo é definido em site.config.js → labels.sponsorship
+           ================================================================ -->
+      <section class="section" id="patriocinio" aria-labelledby="patriocinio-title">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <p class="section__eyebrow" data-reveal data-config="labels.sponsorship">Patriocinio</p>
+            <h2 id="patriocinio-title" data-reveal>Parceiros e apoiadores</h2>
+            <p class="section__lead" data-reveal>
+              Empresas que apoiam a formação dos nossos alunos.
+            </p>
+          </div>
+
+          <!-- Para adicionar um parceiro: coloque o logotipo em fotos/parceiros/,
+               registre-o em scripts/otimizar-fotos.mjs (com logo: true), rode
+               "npm run fotos" e duplique um <figure class="sponsor">.
+               Se o parceiro tiver site, envolva o <figure> num
+               <a href="..." target="_blank" rel="noopener noreferrer">. -->
+          <div class="sponsors" data-reveal>
+            <figure class="sponsor">
+              <picture>
+                <source type="image/webp" srcset="/img/parceiros/ecodog.webp" />
+                <img
+                  src="/img/parceiros/ecodog.png"
+                  alt="Logotipo da Eco Dog"
+                  width="98"
+                  height="98"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="sponsor__name">
+                Eco Dog
+                <span>Patrocinadora oficial</span>
+              </figcaption>
+            </figure>
+            <figure class="sponsor sponsor--round">
+              <picture>
+                <source type="image/webp" srcset="/img/parceiros/litoral-pet.webp" />
+                <img
+                  src="/img/parceiros/litoral-pet.png"
+                  alt="Logotipo da Litoral Pet Distribuidora"
+                  width="240"
+                  height="240"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="sponsor__name">
+                Litoral Pet
+                <span>Distribuidora</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <p class="sponsor__cta">
+            <a
+              class="btn btn--secondary"
+              data-wa="Olá! Gostaria de conversar sobre parceria/patrocínio com a Giovanella Escola Estética Animal."
+              data-track="cta_clique"
+              data-track-label="patrocinio"
+              href="https://wa.me/5547996086955"
+              >Quero ser parceiro</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           CTA FINAL (seção escura — o header inverte automaticamente)
+           ================================================================ -->
+      <section class="section section--alt" data-header-theme="dark" aria-labelledby="cta-title">
+        <div class="container">
+          <div class="cta-band" data-reveal>
+            <div>
+              <h2 id="cta-title">Pronto para dar o próximo passo?</h2>
+              <p>
+                Fale agora pelo WhatsApp e tire suas dúvidas sobre cursos, turmas e matrículas na
+                nossa escola de estética animal em Joinville.
+              </p>
+            </div>
+            <div class="cta-band__actions">
+              <a
+                class="btn btn--whatsapp"
+                data-wa="default"
+                data-track="whatsapp_clique"
+                data-track-label="cta_final"
+                href="https://wa.me/5547996086955"
+                >Falar no WhatsApp</a
+              >
+              <a
+                class="btn btn--outline-light"
+                data-tel
+                data-track="telefone_clique"
+                data-track-label="cta_final"
+                href="tel:+5547996086955"
+                >Ligar agora</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================================================================
+         FOOTER (fundo escuro — o header também inverte aqui)
+         ================================================================== -->
+    <footer class="footer" data-header-theme="dark">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <img
+              class="footer__logo"
+              src="/img/Logo-Giovanella.png"
+              alt="Giovanella Escola Estética Animal"
+              width="331"
+              height="100"
+              loading="lazy"
+            />
+            <p class="footer__list">
+              Escola de formação profissional em estética animal, em Joinville, Santa Catarina.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="footer__title">Navegação</h2>
+            <ul class="footer__list">
+              <li><a href="#inicio">Início</a></li>
+              <li><a href="#sobre">Sobre a escola</a></li>
+              <li><a href="#cursos">Cursos</a></li>
+              <li><a href="#contato">Contato</a></li>
+              <li><a href="#depoimentos">Depoimentos</a></li>
+              <li><a href="#patriocinio" data-config="labels.sponsorship">Patriocinio</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__title">Contato</h2>
+            <ul class="footer__list">
+              <li>
+                <a data-wa="default" data-track="whatsapp_clique" data-track-label="footer" href="https://wa.me/5547996086955">
+                  WhatsApp: <span data-config="contact.phoneDisplay">(47) 99608-6955</span>
+                </a>
+              </li>
+              <li>
+                <a data-tel data-track="telefone_clique" data-track-label="footer" href="tel:+5547996086955">
+                  Telefone: <span data-config="contact.phoneDisplay">(47) 99608-6955</span>
+                </a>
+              </li>
+              <li>
+                <a data-directions data-track="como_chegar_clique" href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Elly%20Soares%2C%20511%2C%20Bairro%20Floresta%2C%20Joinville%20-%20SC%2C%20Brasil">
+                  Como chegar
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__title">Endereço</h2>
+            <address class="footer__list">
+              Rua Elly Soares, 511<br />
+              Bairro Floresta<br />
+              Joinville - SC, Brasil
+            </address>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span>
+            &copy; <span data-year>2026</span> Giovanella Escola Estética Animal. Todos os direitos
+            reservados.
+          </span>
+          <a href="/privacidade.html">Política de Privacidade</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================================================================
+         BOTÃO FLUTUANTE DE WHATSAPP
+         ================================================================== -->
+    <a
+      class="wa-float"
+      data-wa="default"
+      data-track="whatsapp_clique"
+      data-track-label="botao_flutuante"
+      href="https://wa.me/5547996086955"
+      aria-label="Falar com a Giovanella Escola Estética Animal pelo WhatsApp"
+    >
+      <span class="wa-float__tooltip">Fale conosco</span>
+      <svg class="wa-float__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.38-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.45 9.45 0 0 1-4.8-1.32l-.35-.2-3.57.93.96-3.48-.23-.36a9.4 9.4 0 0 1-1.44-5.03c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 0 1 2.76 6.68c0 5.2-4.24 9.45-9.44 9.45zM20.5 3.49A11.8 11.8 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.85c0 2.09.55 4.13 1.59 5.93L.08 24l6.37-1.67a11.83 11.83 0 0 0 5.59 1.42h.01c6.53 0 11.85-5.32 11.85-11.85 0-3.17-1.23-6.14-3.4-8.41z"
+        />
+      </svg>
+    </a>
+
+    <!-- ==================================================================
+         CONSENTIMENTO (LGPD)
+         Exibido apenas quando o Google Analytics estiver configurado.
+         ================================================================== -->
+    <aside class="consent" data-consent hidden aria-label="Aviso de privacidade">
+      <strong>Sua privacidade</strong>
+      <p class="consent__text">
+        Usamos cookies de medição (Google Analytics) apenas para entender como o site é usado.
+        Nenhum dado do formulário é armazenado ou enviado por e-mail.
+        <a href="/privacidade.html">Saiba mais</a>.
+      </p>
+      <div class="consent__actions">
+        <button class="btn btn--primary" type="button" data-consent-accept>Aceitar</button>
+        <button class="btn btn--secondary" type="button" data-consent-reject>Recusar</button>
+      </div>
+    </aside>
+  </body>
+</html>
