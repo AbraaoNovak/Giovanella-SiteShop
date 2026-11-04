@@ -601,6 +601,9 @@
       <!-- ================================================================
            INÍCIO / HERO
            ================================================================ -->
+      <!-- Primeira tela SEM animação de entrada (data-reveal): o título é o
+           maior elemento visível (LCP). Começar invisível e esperar o JS fazia
+           o Google medir o carregamento ~2,4 s mais lento. Não reintroduzir. -->
       <section class="hero" id="inicio" aria-labelledby="hero-title">
         <div class="container hero__grid">
           <div>
@@ -608,10 +611,10 @@
                  ("escola de estética animal" + "Joinville") faz parte do título
                  da página para o Google, sem mudar o visual. -->
             <h1 class="hero__title" id="hero-title">
-              <span class="section__eyebrow hero__kicker" data-reveal
+              <span class="section__eyebrow hero__kicker"
                 >Escola de Estética Animal · Joinville/SC</span
               >
-              <span class="hero__headline" data-reveal
+              <span class="hero__headline"
                 >Formação profissional em <em>estética animal</em> com cuidado de verdade</span
               >
             </h1>
@@ -619,13 +622,13 @@
             <!-- Subtítulo: só afirmações comprováveis pelos pôsteres dos cursos
                  (18 cursos, presenciais, do banho às especializações por raça,
                  com aulas práticas). Sem números inventados de alunos ou anos. -->
-            <p class="hero__subtitle" data-reveal>
+            <p class="hero__subtitle">
               <strong>Transforme o amor pelos animais em profissão.</strong>
               Do primeiro banho à tosa de raça, você aprende na prática, em turmas presenciais
               em Joinville — são 18 cursos para começar do zero ou se especializar.
             </p>
 
-            <div class="hero__actions" data-reveal>
+            <div class="hero__actions">
               <a class="btn btn--primary" href="#cursos" data-track="cta_clique" data-track-label="hero_cursos">
                 Conheça nossos cursos
               </a>
@@ -648,7 +651,7 @@
             <!-- Indicadores de confiança.
                  Só há afirmações verificáveis aqui; os demais estão marcados
                  como pendentes para evitar informação comercial inventada. -->
-            <ul class="trust" data-reveal>
+            <ul class="trust">
               <li class="trust__item">
                 <svg class="trust__icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
@@ -679,7 +682,7 @@
             </ul>
           </div>
 
-          <div class="hero__media" data-reveal>
+          <div class="hero__media">
             <!-- Foto de destaque (é o LCP da página): carregamento prioritário,
                  sem lazy-loading. Original em fotos/destaque/. -->
             <figure class="photo hero__photo">

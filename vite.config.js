@@ -8,7 +8,42 @@ import { resolve } from 'node:path';
  * desenvolvimento e empacotador (minificação + hash de cache). Não há
  * framework de UI, o que mantém o JavaScript enviado ao navegador mínimo.
  */
+/**
+ * Pré-carrega a fonte Inter (subconjunto latino) já no <head>.
+ *
+ * Sem isto, a cadeia era HTML -> CSS -> fonte: o navegador só descobria a
+ * fonte depois de ler o CSS, e o título (maior elemento da primeira tela, o
+ * LCP) era redesenhado com ela tarde. Com o preload, fonte e CSS baixam em
+ * paralelo. O nome do arquivo tem hash e muda a cada build — por isso ele é
+ * procurado no próprio bundle, em vez de escrito à mão no HTML.
+ */
+function preloadFonteInter() {
+  return {
+    name: 'preload-fonte-inter',
+    apply: 'build',
+    transformIndexHtml: {
+      order: 'post',
+      handler(_html, ctx) {
+        const fonte = Object.keys(ctx.bundle || {}).find((arquivo) =>
+          /inter-latin-wght-normal-[\w-]+\.woff2$/.test(arquivo)
+        );
+        if (!fonte) return [];
+        return [
+          {
+            tag: 'link',
+            // crossorigin é obrigatório em preload de fonte, mesmo do próprio site.
+            attrs: { rel: 'preload', href: `/${fonte}`, as: 'font', type: 'font/woff2', crossorigin: '' },
+            injectTo: 'head',
+          },
+        ];
+      },
+    },
+  };
+}
+
 export default defineConfig({
+  plugins: [preloadFonteInter()],
+
   // Caminhos relativos à raiz do domínio (troque para './' em subdiretórios).
   base: '/',
 

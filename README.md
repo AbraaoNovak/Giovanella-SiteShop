@@ -599,6 +599,20 @@ completa por teclado, foco visível, foco preso no menu mobile, `aria-expanded`/
 patinhas entram em `requestIdleCallback` para não competir com o LCP e se
 desligam sozinhas em aparelhos fracos ou com `saveData`.
 
+- **Primeira tela sem animação de entrada.** O título do topo é o maior
+  elemento visível (o LCP do Google). Começar invisível e só aparecer após o
+  JavaScript atrasaria essa métrica para visitantes reais — não reintroduza
+  `data-reveal` no `.hero`.
+- **Fonte pré-carregada.** Um plugin em `vite.config.js` insere no `<head>` o
+  preload do arquivo da Inter (o nome muda a cada build). Assim fonte e CSS
+  baixam em paralelo.
+
+> **Ao medir no PageSpeed:** o endereço `*.vercel.app` mostra SEO ~69 de
+> propósito (cabeçalho `noindex`, ver seção 21). Avalie a nota de SEO no domínio
+> definitivo. E rode medições no PageSpeed (servidores do Google), não no
+> Lighthouse local: antivírus como o Kaspersky injetam scripts nas páginas e
+> distorcem bastante o resultado local.
+
 **Compatibilidade com navegadores.** Suportados: Chrome/Edge 88+, Firefox 78+
 (ESR), Safari/iOS 14+ e Samsung Internet 15+. O site foi desenhado para
 **nunca esconder conteúdo** quando algo falha:

@@ -1,0 +1,5 @@
+# Giovanella Escola Estética Animal
+User-agent: *
+Allow: /
+
+Sitemap: https://www.escolabanhoetosarosigiovanella.com.br/sitemap.xml

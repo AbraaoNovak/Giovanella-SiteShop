@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Atualize <lastmod> sempre que o conteúdo da página mudar.
+     As imagens listadas ajudam o Google Imagens a associá-las à escola em
+     Joinville. Só fotos PRÓPRIAS da escola: as dos cursos vêm de banco de
+     imagens e ficam de fora até a licença ser confirmada. -->
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+  <url>
+    <loc>https://www.escolabanhoetosarosigiovanella.com.br/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/destaque/instrutora-em-aula.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/estrutura/fachada.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/estrutura/sala-de-tosa.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/estrutura/banho.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/galeria/01-conclusao-certificado.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/galeria/02-turma-aula-pratica.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/galeria/04-turma-com-spitz.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.escolabanhoetosarosigiovanella.com.br/img/galeria/05-turma-com-schnauzers.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.escolabanhoetosarosigiovanella.com.br/privacidade.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>
