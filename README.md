@@ -3,6 +3,10 @@
 Site institucional da **Giovanella Escola Estética Animal**, em Joinville - SC.
 Foco em conversão por **WhatsApp** e **telefone**, apresentação dos cursos e SEO local.
 
+Inclui a **Loja** (`/loja/`), uma vitrine de produtos com links de afiliado do
+Mercado Livre e da Shopee — ver seção 23, [AFFILIATE_CONFIGURATION.md](AFFILIATE_CONFIGURATION.md)
+e [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md).
+
 ---
 
 ## 1. Nome do projeto
@@ -48,6 +52,13 @@ contraste, JavaScript bloqueado/desativado e celular:
 
 ```bash
 npm run test:navegadores
+```
+
+Para testar a loja em navegadores reais com um catálogo de exemplo (filtros,
+links de afiliado, XSS, celular, sem JavaScript, CSP) — ver seção 23:
+
+```bash
+npm run test:loja
 ```
 
 Para reprocessar as fotos depois de trocar um original (ver seção 9):
@@ -108,6 +119,10 @@ saída, cabeçalhos de segurança, cache e redirecionamentos. Cada `git push` na
 ```
 .
 ├── index.html              # Página principal (todo o conteúdo do site)
+├── AFFILIATE_CONFIGURATION.md # Como cadastrar produtos e links de afiliado
+├── IMPLEMENTATION_STATUS.md   # O que a loja já faz, testes e pendências
+├── docs/IDENTIDADE_VISUAL_LOJA.md # Identidade visual derivada para a loja
+├── loja/                   # GERADA no build (páginas da loja) — fora do Git
 ├── privacidade.html        # Política de Privacidade (LGPD)
 ├── 404.html                # Página de "não encontrado" (noindex)
 ├── vercel.json             # Segurança (CSP etc.), cache e redirecionamentos do Wix
@@ -115,6 +130,7 @@ saída, cabeçalhos de segurança, cache e redirecionamentos. Cada `git push` na
 ├── .env.example            # Modelo das variáveis de ambiente
 ├── fotos/                  # ORIGINAIS das fotos (não vão para o site)
 │   ├── destaque/ estrutura/ equipe/ cursos/ galeria/ parceiros/
+│   ├── loja/               # Fotos de produtos da loja (opcional)
 │   └── nao-utilizadas/
 ├── public/                 # Copiado para a raiz do site, sem processamento
 │   ├── favicon.svg
@@ -130,14 +146,26 @@ saída, cabeçalhos de segurança, cache e redirecionamentos. Cada `git push` na
 │   ├── test-env.mjs
 │   ├── test-navegadores.mjs # Testes em Edge/Chrome/Brave reais (com a CSP)
 │   ├── test-seguranca.mjs   # Auditoria de segurança do build
+│   ├── test-loja.mjs        # Testes da loja: links, catálogo, HTML (npm test)
+│   ├── test-loja-navegador.mjs # Loja em Edge/Chrome/Brave (npm run test:loja)
+│   ├── fixtures/produtos-exemplo.js # Catálogo FALSO, só para os testes
 │   └── capturas.mjs         # Capturas de tela para revisão visual
 └── src/
+    ├── loja/               # LOJA — dados e geração das páginas
+    │   ├── produtos.js     # PRODUTOS E LINKS DE AFILIADO  ← edite aqui
+    │   ├── categorias.js   # Categorias dos filtros
+    │   ├── config.js       # Domínios aceitos, validade do preço, aviso
+    │   ├── catalogo.js     # Validação (links, fotos, preços)
+    │   ├── paginas.js      # HTML da loja, dos produtos e dos destaques
+    │   ├── html.js         # Escape anti-XSS e layout copiado da home
+    │   └── vite-plugin-loja.js # Gera loja/ a cada build
     ├── css/
     │   ├── main.css        # Ponto de entrada — importa os demais
     │   ├── tokens.css      # CORES, tipografia, espaçamentos  ← edite aqui
     │   ├── base.css        # Reset, tipografia base, acessibilidade
     │   ├── components.css  # Botões, header, menu, cards, formulário, footer
     │   ├── sections.css    # Layout de cada seção
+    │   ├── loja.css        # Estilos exclusivos da loja
     │   ├── animations.css  # Scroll reveal, patinhas, reduced-motion
     │   └── compat.css      # Fallbacks para navegadores antigos
     └── js/
@@ -152,6 +180,7 @@ saída, cabeçalhos de segurança, cache e redirecionamentos. Cada `git push` na
             ├── env.js           # Detecção de reduced-motion / device fraco
             ├── form.js          # Formulário de interesse → WhatsApp
             ├── header.js        # Header fixo, adaptativo, seção ativa
+            ├── loja-filtros.js  # Filtros da loja (categoria/plataforma)
             ├── map.js           # Google Maps sob demanda + "Como chegar"
             ├── mobile-menu.js   # Hamburger, ESC, foco preso
             ├── paws.js          # Experimento das patinhas
@@ -224,6 +253,11 @@ escola quer se diferenciar disso. Em termos práticos:
   **Não reintroduza `PetStore`** nem tipos de loja/varejo;
 - os textos falam de cursos, turmas e matrículas — não de serviços prestados;
 - a palavra "petshop" não aparece em nenhum arquivo do site.
+
+A **Loja** (seção 23) não muda esse posicionamento: é uma vitrine de
+indicações com links de afiliado, a escola não vende nem entrega nada, e a
+loja usa `CollectionPage`/`WebPage` no Schema.org — nunca tipos de varejo.
+No menu ela vem por último (prioridade 3, depois de cursos e contato).
 
 > O repositório ainda se chama `Giovanella-Petshop`. Vale renomeá-lo no GitHub
 > (Settings → Repository name); o Git cria um redirecionamento automático, então
@@ -505,6 +539,13 @@ mobile, título da seção e footer acompanham. (O `id="patriocinio"` da seção
 - [ ] Enviar o `sitemap.xml` no Google Search Console
 - [ ] Cadastrar/atualizar o Perfil da Empresa no Google (essencial para SEO local)
 
+**Loja** (detalhes em IMPLEMENTATION_STATUS.md)
+- [x] `npm run test:loja` sem erros
+- [ ] Cadastro aprovado nos programas de afiliados (Mercado Livre e Shopee)
+- [ ] Confirmar nos termos se fotos e notas dos anúncios podem ser exibidas
+- [ ] Conferir os domínios do primeiro link real de cada programa (config.js)
+- [ ] Cadastrar os primeiros produtos (AFFILIATE_CONFIGURATION.md)
+
 ## 21. Segurança
 
 O site não tem servidor, banco de dados, login nem formulário que envie dados —
@@ -577,6 +618,36 @@ em `vercel.json`. Qualquer outro endereço inexistente mostra a página
 `404.html`, com link para o início e para os cursos.
 
 ---
+
+## 23. Loja de afiliados
+
+Vitrine de produtos para banho, tosa e estética animal. Cada produto leva à
+oferta no **Mercado Livre** ou na **Shopee** por um link de afiliado; a
+compra, o pagamento e a entrega são da plataforma.
+
+- **Onde editar:** `src/loja/produtos.js` (produtos e links). Passo a passo
+  completo em [AFFILIATE_CONFIGURATION.md](AFFILIATE_CONFIGURATION.md).
+- **Como é gerada:** o plugin `src/loja/vite-plugin-loja.js` valida o
+  catálogo e gera HTML estático em `loja/` a cada `npm run dev` /
+  `npm run build` (bom para SEO e funciona sem JavaScript). Erro no
+  catálogo interrompe o build: o site publicado continua o anterior.
+- **Layout:** cabeçalho, menu, rodapé e scripts do `<head>` são copiados do
+  `index.html` no build. Mudou o menu da home, a loja acompanha. Os scripts
+  saem idênticos, então os hashes da CSP continuam valendo.
+- **Na home:** item "Loja" no menu (desktop, celular e rodapé) e o marcador
+  `<!-- loja:destaques -->`, trocado pela seção de destaques quando houver
+  produto com `is_featured: true` e link válido.
+- **Google:** loja sem oferta real fica com `noindex` e fora do sitemap; o
+  plugin acrescenta ao `dist/sitemap.xml` só as páginas com oferta.
+- **Segurança:** links só de domínios oficiais (HTTPS), validados no build;
+  `rel="sponsored nofollow noopener noreferrer"`; texto do catálogo sempre
+  escapado; fotos só do próprio site (a CSP não mudou).
+- **Endereços:** `/loja/` e `/loja/<slug>/`; `/shop` redireciona (308) para
+  `/loja/` (vercel.json).
+
+Testes: `npm test` (inclui `scripts/test-loja.mjs`), `npm run test:loja`
+(navegadores reais) e `npm run test:seguranca` (agora também nas páginas da
+loja).
 
 ## Notas de implementação
 

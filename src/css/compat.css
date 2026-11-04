@@ -58,4 +58,17 @@
     height: 240px;
   }
 
+  /* Loja: fotos de produto (quadradas) e foto do topo. */
+  .produto-foto {
+    height: 260px;
+  }
+
+  .produto-galeria .produto-foto {
+    height: 88px;
+  }
+
+  .loja-hero .hero__photo {
+    height: 380px;
+  }
+
 }

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import { lojaPlugin } from './src/loja/vite-plugin-loja.js';
 
 /**
  * Configuração do Vite.
@@ -42,7 +43,8 @@ function preloadFonteInter() {
 }
 
 export default defineConfig({
-  plugins: [preloadFonteInter()],
+  // lojaPlugin: gera as páginas da loja (/loja/) a partir de src/loja/.
+  plugins: [lojaPlugin(), preloadFonteInter()],
 
   // Caminhos relativos à raiz do domínio (troque para './' em subdiretórios).
   base: '/',
@@ -64,6 +66,7 @@ export default defineConfig({
         privacidade: resolve(__dirname, 'privacidade.html'),
         // A Vercel serve /404.html automaticamente para endereços inexistentes.
         erro404: resolve(__dirname, '404.html'),
+        // As páginas da loja (loja/**/index.html) entram aqui pelo lojaPlugin.
       },
     },
   },

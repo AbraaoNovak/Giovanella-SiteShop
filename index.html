@@ -512,6 +512,8 @@
           <a class="nav__link" href="#patriocinio" data-nav-link data-config="labels.sponsorship"
             >Patriocinio</a
           >
+          <!-- Loja de afiliados (página própria, gerada de src/loja/). -->
+          <a class="nav__link" href="/loja/">Loja</a>
         </nav>
 
         <div class="header__actions">
@@ -571,6 +573,7 @@
                 >Patriocinio</a
               >
             </li>
+            <li><a class="mobile-menu__link" href="/loja/">Loja</a></li>
           </ul>
         </nav>
 
@@ -2202,6 +2205,14 @@
       </section>
 
       <!-- ================================================================
+           LOJA — PRODUTOS EM DESTAQUE (gerado no build)
+           O marcador abaixo é trocado pela seção de produtos com
+           is_featured: true e link de afiliado válido (src/loja/produtos.js).
+           Sem nenhum, ele continua aqui como comentário e nada aparece.
+           ================================================================ -->
+      <!-- loja:destaques -->
+
+      <!-- ================================================================
            CTA FINAL (seção escura — o header inverte automaticamente)
            ================================================================ -->
       <section class="section section--alt" data-header-theme="dark" aria-labelledby="cta-title">
@@ -2266,6 +2277,7 @@
               <li><a href="#contato">Contato</a></li>
               <li><a href="#depoimentos">Depoimentos</a></li>
               <li><a href="#patriocinio" data-config="labels.sponsorship">Patriocinio</a></li>
+              <li><a href="/loja/">Loja</a></li>
             </ul>
           </div>
 

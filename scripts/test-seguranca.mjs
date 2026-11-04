@@ -15,7 +15,7 @@
 import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, dirname, extname } from 'node:path';
+import { join, dirname, extname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
@@ -60,7 +60,8 @@ check("CSP sem 'unsafe-inline' nem 'unsafe-eval'", !/unsafe-(inline|eval)/.test(
 /* ---------------------------------------------------------------------------
    HTML publicado
    --------------------------------------------------------------------------- */
-const paginas = readdirSync(DIST).filter((f) => f.endsWith('.html'));
+// Inclui as páginas em subpastas (loja/, loja/<produto>/).
+const paginas = listar(DIST).filter((f) => f.endsWith('.html')).map((f) => relative(DIST, f).split('\\').join('/'));
 check('build encontrado', paginas.length > 0, paginas.join(', '));
 
 const hashesUsados = new Set();
@@ -98,7 +99,13 @@ for (const pagina of paginas) {
   const semNoopener = novaAba.filter((t) => !/rel="[^"]*noopener/.test(t));
   check(`${pagina}: links target=_blank com noopener`, semNoopener.length === 0, `${novaAba.length} links`);
 
-  // 5. Formulários nunca por GET (dados pessoais iriam para a URL).
+  // 5. Links de afiliado: sempre marcados como patrocinados e sem repassar
+  //    a origem (rel completo), abrindo em nova aba.
+  const afiliados = html.match(/<a\b[^>]*class="[^"]*produto-oferta[^"]*"[^>]*>/g) || [];
+  const afiliadoSemRel = afiliados.filter((t) => !/rel="sponsored nofollow noopener noreferrer"/.test(t) || !t.includes('href="https://'));
+  if (afiliados.length) check(`${pagina}: links de afiliado com rel="sponsored nofollow noopener noreferrer"`, afiliadoSemRel.length === 0, `${afiliados.length} links`);
+
+  // 6. Formulários nunca por GET (dados pessoais iriam para a URL).
   const forms = html.match(/<form\b[^>]*>/g) || [];
   for (const f of forms) check(`${pagina}: formulário com method="post"`, /method="post"/i.test(f));
 }

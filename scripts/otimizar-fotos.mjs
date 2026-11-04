@@ -20,6 +20,7 @@
 
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
+import { existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -105,6 +106,25 @@ const GALERIA = [
 ];
 for (const [nome, opcoes] of GALERIA) {
   TAREFAS.push([`galeria/${nome}.jpg`, `galeria/${nome}`, opcoes]);
+}
+
+/**
+ * Loja: TODA foto colocada em fotos/loja/ vira /img/loja/<nome>.webp + .jpg,
+ * com até 800 px de largura e a proporção original (o card mostra a foto
+ * inteira, sem recorte). Nome do arquivo: minúsculas, números e hífen — é o
+ * mesmo nome usado em image_url (ex.: fotos/loja/tesoura-reta.jpg →
+ * '/img/loja/tesoura-reta.jpg'). Ver AFFILIATE_CONFIGURATION.md.
+ */
+const PASTA_LOJA = join(ORIGEM, 'loja');
+if (existsSync(PASTA_LOJA)) {
+  for (const arquivo of readdirSync(PASTA_LOJA)) {
+    const nome = arquivo.match(/^([a-z0-9]+(?:-[a-z0-9]+)*)\.(?:jpe?g|png|webp)$/);
+    if (!nome) {
+      if (!arquivo.startsWith('.')) console.warn(`fotos/loja/${arquivo}: ignorada — use só minúsculas, números e hífen (ex.: tesoura-reta.jpg)`);
+      continue;
+    }
+    TAREFAS.push([`loja/${arquivo}`, `loja/${nome[1]}`, { larguras: [800] }]);
+  }
 }
 
 /**

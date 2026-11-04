@@ -44,6 +44,8 @@
     { "source": "/general-6", "destination": "/", "permanent": true },
     { "source": "/payment-request-page", "destination": "/", "permanent": true },
     { "source": "/coming-soon-02", "destination": "/", "permanent": true },
-    { "source": "/coming-soon-02-1", "destination": "/", "permanent": true }
+    { "source": "/coming-soon-02-1", "destination": "/", "permanent": true },
+    { "source": "/shop", "destination": "/loja/", "permanent": true },
+    { "source": "/shop/:slug*", "destination": "/loja/:slug*", "permanent": true }
   ]
 }

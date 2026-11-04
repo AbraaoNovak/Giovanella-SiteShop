@@ -1,0 +1,506 @@
+/* ==========================================================================
+   LOJA (vitrine de afiliados) — /loja/, páginas de produto e destaques da home
+   Usa somente os tokens de tokens.css e reaproveita os componentes do site
+   (.hero, .card, .tag, .btn, .trust, .cta-band). Nada aqui altera o visual
+   das seções existentes: todos os seletores são exclusivos da loja.
+   Identidade derivada documentada em docs/IDENTIDADE_VISUAL_LOJA.md.
+   ========================================================================== */
+
+/* ---------- Menu: página atual (a home usa aria-current="true") ---------- */
+.nav__link[aria-current='page'] {
+  color: var(--color-secondary-deep);
+}
+
+.nav__link[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.header.is-on-dark .nav__link[aria-current='page'] {
+  color: var(--color-light-green);
+}
+
+/* O item "Loja" deixou o menu 33 px mais largo do que cabe entre 1024 e
+   ~1060 px (antes ele já ocupava a largura toda). Só nessa faixa, os links
+   ficam um pouco mais próximos; nas demais larguras nada muda. Medido com
+   scripts/test-loja-navegador.mjs ("1024px: menu com Loja cabe"). */
+@media (min-width: 1024px) and (max-width: 1099px) {
+  .nav {
+    gap: 0.4rem;
+  }
+
+  .nav__link {
+    padding-inline: 0.5rem;
+  }
+
+  .nav__link::after {
+    left: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+.mobile-menu__link[aria-current='page'] {
+  color: var(--color-secondary-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+/* ---------- Rodapé: aviso de afiliados ---------- */
+.footer__afiliados {
+  margin-top: var(--space-lg);
+  max-width: 72ch;
+  font-size: var(--step--1);
+  color: var(--color-text-on-dark-muted);
+}
+
+/* ---------- Trilha de navegação (breadcrumb) ---------- */
+.breadcrumb {
+  margin-bottom: var(--space-sm);
+  font-size: var(--step--1);
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.breadcrumb li + li::before {
+  content: '›';
+  color: var(--color-border-strong);
+}
+
+.breadcrumb [aria-current='page'] {
+  /* Nome de produto longo não pode empurrar a página para o lado. */
+  overflow-wrap: anywhere;
+  color: var(--color-text);
+}
+
+/* ---------- Topo da loja ---------- */
+.loja-hero {
+  padding-bottom: var(--space-xl);
+}
+
+/* Um degrau menor que o título da home: a escola continua sendo o destaque. */
+.loja-hero .hero__headline {
+  font-size: var(--step-4);
+}
+
+.loja-hero .hero__photo {
+  aspect-ratio: 1 / 1;
+  max-width: 460px;
+  margin-inline: auto;
+}
+
+/* ---------- Filtros ---------- */
+.loja-filtros {
+  display: grid;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+/* Sem JavaScript os filtros não funcionariam: ficam ocultos e a lista
+   completa aparece. */
+html:not(.js) .loja-filtros {
+  display: none;
+}
+
+.loja-filtros__grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.loja-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--step--1);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.loja-chip:hover {
+  border-color: var(--color-secondary);
+}
+
+.loja-chip[aria-pressed='true'] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.loja-chip__total {
+  min-width: 1.6em;
+  padding: 0 0.4em;
+  border-radius: var(--radius-pill);
+  background: rgba(168, 188, 131, 0.3);
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.loja-chip[aria-pressed='true'] .loja-chip__total {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.loja-contagem {
+  margin-bottom: var(--space-md);
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+/* ---------- Grade e card de produto ---------- */
+.loja-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+}
+
+.produto-card__media {
+  display: block;
+  border-bottom: 1px solid var(--color-border);
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Fotos de produto: inteiras (contain) sobre branco — recortar esconderia
+   parte do produto. Quadrado fixo: sem "pulos" de layout. */
+.produto-foto {
+  display: block;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.produto-foto img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: var(--space-sm);
+}
+
+/* Produto ainda sem foto: marcador com a patinha da marca. */
+.produto-foto--vazia {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-2xs);
+  background:
+    repeating-linear-gradient(45deg, rgba(168, 188, 131, 0.14) 0 12px, rgba(247, 245, 238, 0) 12px 24px),
+    var(--color-bg-alt);
+  color: var(--color-text-muted);
+  font-size: var(--step--1);
+}
+
+.loja-icone-pata {
+  width: 44px;
+  height: 44px;
+  fill: var(--color-secondary);
+  opacity: 0.7;
+}
+
+.produto-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Plataforma em tom neutro: identifica o destino sem copiar cores de marca
+   de terceiros. */
+.tag--plataforma {
+  background: var(--color-white);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-muted);
+}
+
+a.tag {
+  text-decoration: none;
+}
+
+a.tag:hover {
+  border-color: var(--color-secondary);
+}
+
+.produto-card__titulo {
+  font-size: var(--step-1);
+  line-height: 1.3;
+}
+
+.produto-card__titulo a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.produto-card__titulo a:hover {
+  text-decoration: underline;
+}
+
+.produto-card__footer {
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+/* ---------- Preço e avaliação (sempre com data de consulta) ---------- */
+.produto-preco__valor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  font-size: var(--step-2);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.produto-preco__original {
+  font-size: var(--step--1);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.produto-preco__nota,
+.produto-avaliacao {
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.produto-avaliacao span {
+  color: var(--color-gold);
+}
+
+/* Sem link de afiliado: aviso claro, sem aparência de botão clicável. */
+.produto-indisponivel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.6rem 1rem;
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---------- Estados vazios ---------- */
+.loja-em-breve,
+.loja-vazio {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl) var(--space-md);
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  text-align: center;
+}
+
+.loja-em-breve p {
+  max-width: 52ch;
+  color: var(--color-text-muted);
+}
+
+.loja-em-breve__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2xs);
+}
+
+/* ---------- "Como funciona" ---------- */
+.loja-passos {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.loja-aviso {
+  margin-top: var(--space-lg);
+  max-width: 72ch;
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.loja-aviso--centro {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* ---------- Página de produto ---------- */
+.loja-produto {
+  padding-top: calc(var(--header-height) + var(--space-lg));
+}
+
+.loja-produto__grid {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .loja-produto__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+
+  /* A foto acompanha a leitura das informações em telas largas. */
+  .loja-produto__fotos {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-sm));
+  }
+}
+
+.loja-produto__fotos > .produto-foto {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.produto-galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: var(--space-2xs);
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.produto-galeria .produto-foto {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.produto-galeria .produto-foto img {
+  padding: 0.35rem;
+}
+
+.loja-produto__info {
+  display: grid;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.loja-produto__titulo {
+  font-size: var(--step-3);
+  overflow-wrap: anywhere;
+}
+
+.loja-produto__lead {
+  font-size: var(--step-1);
+  color: var(--color-text-muted);
+}
+
+.loja-produto__acao {
+  display: grid;
+  gap: var(--space-2xs);
+  justify-items: start;
+}
+
+.loja-produto__redirecionamento {
+  font-size: var(--step--1);
+  color: var(--color-text-muted);
+}
+
+.loja-produto__info .loja-aviso {
+  margin-top: 0;
+}
+
+.produto-secao {
+  margin-top: var(--space-sm);
+  font-size: var(--step-2);
+}
+
+.loja-produto__info p {
+  max-width: 65ch;
+}
+
+.produto-specs {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.produto-specs div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-sm);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.produto-specs dt {
+  font-weight: 600;
+}
+
+.produto-specs dd {
+  margin: 0;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.loja-voltar {
+  font-weight: 600;
+}
+
+/* ---------- Destaques na home ---------- */
+.loja-destaques {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Poucos destaques (1 a 3) ficam centralizados, como o resto da seção. */
+.loja-destaques .loja-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 285px));
+  justify-content: center;
+}
+
+.loja-destaques__acoes {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 599px) {
+  /* Filtros em uma linha que desliza para o lado (dentro da própria faixa;
+     a página não ganha rolagem horizontal). Antes ocupavam 7 linhas. */
+  .loja-filtros__grupo {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: thin;
+  }
+
+  .loja-chip {
+    flex: none;
+  }
+
+  /* Foto um pouco mais baixa: o card cabe melhor na tela. */
+  .produto-card .produto-foto {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Movimento reduzido: cards sem "pulo" ao passar o mouse ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .produto-card:hover {
+    transform: none;
+  }
+}

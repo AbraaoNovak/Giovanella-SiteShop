@@ -9,3 +9,7 @@ Thumbs.db
 .vite/
 # Capturas de tela geradas por npm run capturas
 capturas/
+# Páginas da loja geradas no build a partir de src/loja/ (ver vite-plugin-loja.js)
+/loja/
+# Build de teste da loja (scripts/test-loja-navegador.mjs)
+/.teste-loja/

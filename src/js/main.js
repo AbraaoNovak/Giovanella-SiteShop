@@ -21,6 +21,7 @@ import { initContactForm } from './modules/form.js';
 import { initMap } from './modules/map.js';
 import { initConsent } from './modules/consent.js';
 import { initAnalyticsTracking } from './modules/analytics.js';
+import { initLojaFiltros } from './modules/loja-filtros.js';
 
 const root = document.documentElement;
 
@@ -81,6 +82,7 @@ function boot() {
   safely('depoimentos', initMarquee);
   safely('formulário', initContactForm);
   safely('mapa', initMap);
+  safely('filtros da loja', initLojaFiltros);
 
   // --- Privacidade e medição ---
   safely('consentimento', initConsent);
