@@ -59,6 +59,15 @@ const TAREFAS = [
   ['estrutura/sala-de-tosa.jpg', 'estrutura/sala-de-tosa', { extract: { left: 344, top: 0, width: 584, height: 584 } }],
   ['estrutura/banho.jpg', 'estrutura/banho', { extract: { left: 290, top: 3, width: 598, height: 598 } }],
 
+  // --- Topo da loja (/loja/) -------------------------------------------------
+  // Foto do Pexels (licença Pexels: uso comercial livre, sem crédito
+  // obrigatório) — https://www.pexels.com/photo/19145890/ — de "Goochie Poochie
+  // Grooming". Recorte quadrado com pente, máquina e tesouras inteiros.
+  ['loja-topo/ferramentas-de-tosa.jpg', 'loja/topo/ferramentas-de-tosa', {
+    extract: { left: 90, top: 0, width: 1068, height: 1068 },
+    larguras: [920, 460],
+  }],
+
   // --- Equipe -----------------------------------------------------------------
   ['equipe/instrutora.jpg', 'equipe/instrutora', { extract: { left: 0, top: 40, width: 388, height: 388 } }],
 

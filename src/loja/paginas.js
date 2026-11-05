@@ -374,13 +374,21 @@ export function paginaLoja(catalogo, ctx) {
 
           <div class="hero__media">
             <figure class="photo hero__photo">
+              <!-- Foto: Pexels (licença Pexels, uso comercial livre). Gerada por
+                   "npm run fotos" a partir de fotos/loja-topo/. -->
               <picture>
-                <source type="image/webp" srcset="/img/estrutura/sala-de-tosa.webp" />
+                <source
+                  type="image/webp"
+                  srcset="/img/loja/topo/ferramentas-de-tosa-460.webp 460w, /img/loja/topo/ferramentas-de-tosa.webp 920w"
+                  sizes="(min-width: 960px) 460px, calc(100vw - 2rem)"
+                />
                 <img
-                  src="/img/estrutura/sala-de-tosa.jpg"
-                  alt="Sala de tosa da escola, com mesas de tosa e secadores"
-                  width="584"
-                  height="584"
+                  src="/img/loja/topo/ferramentas-de-tosa.jpg"
+                  srcset="/img/loja/topo/ferramentas-de-tosa-460.jpg 460w, /img/loja/topo/ferramentas-de-tosa.jpg 920w"
+                  sizes="(min-width: 960px) 460px, calc(100vw - 2rem)"
+                  alt="Pente de metal, máquina de tosa e tesouras sobre a mesa de tosa, com pelos cortados"
+                  width="920"
+                  height="920"
                   fetchpriority="high"
                   decoding="async"
                 />
