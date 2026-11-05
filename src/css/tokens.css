@@ -12,6 +12,9 @@
   --color-light-green: #a8bc83;     /* Destaques suaves, cards, decorativos */
   --color-gold: #c69a4b;            /* Detalhes premium (nunca como texto pequeno) */
   --color-terracotta: #c97855;      /* Apenas pequenos detalhes / CTA secundário */
+  --color-terracotta-deep: #b0532c; /* Loja: ações de compra e preço (AA 5,1:1 com branco) */
+  --color-terracotta-deeper: #9c4626; /* Loja: hover das ações de compra (AA 6,3:1) */
+  --color-gold-deep: #6b4410;       /* Loja: texto sobre selos dourados (AA 7:1) */
 
   /* ---------- Superfícies ---------- */
   --color-bg: #f7f5ee;              /* Fundo principal */

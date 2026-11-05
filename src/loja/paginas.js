@@ -89,13 +89,13 @@ function acaoComercial(p, { bloco = true, demonstracao = false } = {}) {
   if (p.compravel && demonstracao) {
     // Demonstração: mesma aparência do botão real, mas sem link — os
     // endereços dos produtos fictícios não existem.
-    return `<span class="btn btn--primary${bloco ? ' btn--block' : ''} produto-oferta produto-oferta--demo"
+    return `<span class="btn btn--compra${bloco ? ' btn--block' : ''} produto-oferta produto-oferta--demo"
                     >Ver oferta no ${esc(p.marketplace.nome)}${ICONE_EXTERNO}<span class="sr-only"> (demonstração, sem link)</span></span
                   >`;
   }
   if (p.compravel) {
     return `<a
-                    class="btn btn--primary${bloco ? ' btn--block' : ''} produto-oferta"
+                    class="btn btn--compra${bloco ? ' btn--block' : ''} produto-oferta"
                     href="${esc(p.link.url)}"
                     target="_blank"
                     rel="sponsored nofollow noopener noreferrer"
@@ -114,7 +114,7 @@ function acaoComercial(p, { bloco = true, demonstracao = false } = {}) {
  * @param {any} ctx
  * @param {{ nivel?: number }} [opcoes]  Nível do título (h2/h3), conforme a seção.
  */
-export function cardProduto(p, ctx, { nivel = 3 } = {}) {
+export function cardProduto(p, ctx, { nivel = 3, destaque = true } = {}) {
   return `
             <article class="card produto-card" data-loja-produto data-categoria="${esc(p.categoria.id)}" data-marketplace="${esc(p.marketplace.id)}">
               <a class="produto-card__media" href="${esc(p.url)}" tabindex="-1" aria-hidden="true">
@@ -123,7 +123,7 @@ export function cardProduto(p, ctx, { nivel = 3 } = {}) {
               <div class="card__body">
                 <div class="produto-card__meta">
                   <span class="tag">${esc(p.categoria.nome)}</span>
-                  <span class="tag tag--plataforma">${esc(p.marketplace.nome)}</span>
+                  <span class="tag tag--plataforma">${esc(p.marketplace.nome)}</span>${selos(p, { destaque })}
                 </div>
                 <h${nivel} class="produto-card__titulo"><a href="${esc(p.url)}">${esc(p.title)}</a></h${nivel}>
                 ${p.short_description ? `<p class="card__text">${esc(p.short_description)}</p>` : ''}${blocoPreco(p)}${blocoAvaliacao(p)}
@@ -138,6 +138,21 @@ export function cardProduto(p, ctx, { nivel = 3 } = {}) {
 function faixaDemonstracao(ctx) {
   if (!ctx.demonstracao) return '';
   return `<p class="loja-demo" role="note"><strong>Demonstração:</strong> produtos, preços e avaliações fictícios, só para visualizar o layout. Os botões não levam a nenhuma oferta.</p>`;
+}
+
+/**
+ * Selos dourados: desconto (quando há preço "de") e destaque.
+ * @param {any} p
+ * @param {{ destaque?: boolean }} [opcoes]  false onde todos já são destaques (home).
+ */
+function selos(p, { destaque = true } = {}) {
+  const lista = [];
+  if (p.preco && p.preco.original) {
+    const pct = Math.round((1 - p.preco.valor / p.preco.original) * 100);
+    if (pct >= 1) lista.push(`<span class="tag tag--destaque">-${pct}%<span class="sr-only"> de desconto</span></span>`);
+  }
+  if (destaque && p.destaque) lista.push('<span class="tag tag--destaque">Destaque</span>');
+  return lista.join('');
 }
 
 /** Trilha de navegação visível (o JSON-LD equivalente é gerado à parte). */
@@ -367,7 +382,7 @@ export function paginaLoja(catalogo, ctx) {
               animal. <strong>A compra é feita no Mercado Livre ou na Shopee.</strong>
             </p>
             <div class="hero__actions">
-              <a class="btn btn--primary" href="#produtos">Ver produtos</a>
+              <a class="btn btn--compra" href="#produtos">Ver produtos</a>
               <a class="btn btn--secondary" href="/#cursos">Conheça os cursos da escola</a>
             </div>
           </div>
@@ -553,7 +568,7 @@ export function paginaProduto(p, ctx) {
             <div class="loja-produto__info">
               <div class="produto-card__meta">
                 <a class="tag" href="${esc(config.caminho)}?categoria=${esc(p.categoria.id)}#produtos">${esc(p.categoria.nome)}</a>
-                <span class="tag tag--plataforma">${esc(p.marketplace.nome)}</span>
+                <span class="tag tag--plataforma">${esc(p.marketplace.nome)}</span>${selos(p)}
               </div>
               <h1 id="produto-title" class="loja-produto__titulo">${esc(p.title)}</h1>
               ${p.short_description ? `<p class="loja-produto__lead">${esc(p.short_description)}</p>` : ''}${blocoPreco(p)}${blocoAvaliacao(p)}
@@ -630,7 +645,7 @@ export function secaoDestaques(catalogo, ctx) {
             </p>
           </div>
           ${faixaDemonstracao(ctx)}
-          <div class="grid loja-grid">${destaques.map((p) => cardProduto(p, ctx, { nivel: 3 })).join('')}
+          <div class="grid loja-grid">${destaques.map((p) => cardProduto(p, ctx, { nivel: 3, destaque: false })).join('')}
           </div>
           <p class="loja-destaques__acoes">
             <a class="btn btn--secondary" href="${esc(ctx.config.caminho)}" data-track="cta_clique" data-track-label="home_loja">Ver todos os produtos</a>

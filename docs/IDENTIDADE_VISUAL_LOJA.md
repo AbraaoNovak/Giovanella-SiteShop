@@ -27,12 +27,28 @@ Fonte da verdade: `src/css/tokens.css`. Estilos exclusivos da loja:
 
 ## 2. Tokens aplicados na Loja
 
-Nenhuma cor nova foi criada. Todo seletor de `loja.css` usa variáveis de
-`tokens.css`:
+Todo seletor de `loja.css` usa variáveis de `tokens.css`. A loja usa o
+**terracota** e o **dourado** que já existiam na paleta, em tons mais escuros
+para passar no contraste (tokens novos em `tokens.css`):
+
+| Papel | Cor | Token | Contraste |
+| --- | --- | --- | --- |
+| Escola (menu, títulos, filtros, cursos) | Verde `#294908` | `--color-primary` | 10,2:1 com branco |
+| **Comprar** (botão "Ver oferta", "Ver produtos", preço) | Terracota `#b0532c` | `--color-terracotta-deep` | 5,1:1 com branco |
+| Hover das ações de compra | `#9c4626` | `--color-terracotta-deeper` | 6,3:1 com branco |
+| **Destaque e desconto** (selos "Destaque", "-18%") | Dourado claro + texto `#6b4410` | `--color-gold-deep` | 7:1 |
+
+Por quê: o efeito comprovado nas cores de compra é o **contraste**. Um
+botão quente numa página verde chama o olho para a ação. Vermelho puro,
+amarelo e laranja vivo foram descartados: o vermelho com o verde parece
+Natal ou liquidação, e o amarelo e o laranja são as cores do Mercado Livre e
+da Shopee (além de não passarem no contraste com texto branco).
+
+Demais usos:
 
 | Uso na loja | Token |
 | --- | --- |
-| Título, preço, botão "Ver oferta", filtro ativo | `--color-primary` |
+| Título, filtro ativo | `--color-primary` |
 | Filtro inativo (borda), etiqueta da plataforma | `--color-border-strong`, `--color-white` |
 | Etiqueta de categoria | `.tag` do site, sem alteração |
 | Data do preço, avisos, textos auxiliares | `--color-text-muted`, `--step--1` |
@@ -43,6 +59,8 @@ Nenhuma cor nova foi criada. Todo seletor de `loja.css` usa variáveis de
 
 ## 3. Decisões de identidade
 
+- **Verde = escola, terracota = comprar.** A separação também deixa claro
+  para o visitante o que é da escola e o que leva para outra plataforma.
 - **Cores das plataformas não são usadas.** O amarelo do Mercado Livre e o
   laranja da Shopee competiriam com o verde da escola e dariam cara de
   marketplace. A plataforma aparece como **texto** numa etiqueta neutra e no
