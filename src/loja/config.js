@@ -17,6 +17,18 @@
  */
 
 export const LOJA = {
+  /**
+   * MODO DEMONSTRAÇÃO — mostra produtos FICTÍCIOS (produtos-demonstracao.js)
+   * para visualizar o layout enquanto não há produtos reais.
+   *
+   * Ligado (true): faixa "Demonstração" em todas as páginas, botões sem link,
+   * noindex e nada no sitemap. O build é RECUSADO se o projeto da Vercel já
+   * estiver no domínio oficial da escola — trava contra esquecimento.
+   *
+   * >>> Mude para false ao cadastrar os produtos reais em produtos.js. <<<
+   */
+  demonstracao: true,
+
   /** Caminho público da loja dentro do site. */
   caminho: '/loja/',
 

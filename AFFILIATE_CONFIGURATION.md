@@ -251,3 +251,30 @@ Como encaixar na arquitetura atual, sem expor segredos:
 - [ ] Preço com `last_updated` de hoje (ou `price: null`)
 - [ ] `npm run dev`, abri `/loja/` e a página do produto, sem erro no terminal
 - [ ] `git add`, `git commit`, `git push`
+
+## 13. Modo demonstração (produtos fictícios)
+
+Para visualizar o layout antes de existirem produtos reais, a loja tem um
+**modo demonstração**, hoje **ligado** (`src/loja/config.js` → `demonstracao: true`).
+
+Com ele ligado:
+
+- a loja mostra os 12 produtos **fictícios** de
+  `src/loja/produtos-demonstracao.js` (nomes genéricos, preços e notas
+  inventados, ilustrações próprias em `public/img/loja/demo/`);
+- toda página da loja (e a seção de destaques da home) mostra a faixa
+  **"Demonstração: produtos, preços e avaliações fictícios"**;
+- os botões "Ver oferta" têm a mesma aparência, mas **não têm link**;
+- tudo fica com `noindex` e fora do sitemap;
+- **trava:** se o projeto da Vercel já estiver no domínio oficial da escola
+  (`escolabanhoetosarosigiovanella`), o build é **recusado**. Produtos
+  fictícios nunca chegam ao site oficial, mesmo que alguém esqueça de
+  desligar o modo.
+
+**Para desligar** (ao cadastrar os produtos reais):
+
+1. em `src/loja/config.js`, mude para `demonstracao: false`;
+2. cadastre os produtos reais em `src/loja/produtos.js` (seção 4);
+3. opcional: apague `src/loja/produtos-demonstracao.js`,
+   `public/img/loja/demo/` e `scripts/gerar-fotos-demonstracao.mjs`
+   (e as 3 linhas que os citam em `scripts/test-loja.mjs`).

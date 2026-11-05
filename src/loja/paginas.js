@@ -85,7 +85,14 @@ function blocoAvaliacao(p) {
  * - link válido mas produto esgotado: aviso, sem link;
  * - sem link (vazio ou marcador): "Oferta em breve", sem link.
  */
-function acaoComercial(p, { bloco = true } = {}) {
+function acaoComercial(p, { bloco = true, demonstracao = false } = {}) {
+  if (p.compravel && demonstracao) {
+    // Demonstração: mesma aparência do botão real, mas sem link — os
+    // endereços dos produtos fictícios não existem.
+    return `<span class="btn btn--primary${bloco ? ' btn--block' : ''} produto-oferta produto-oferta--demo"
+                    >Ver oferta no ${esc(p.marketplace.nome)}${ICONE_EXTERNO}<span class="sr-only"> (demonstração, sem link)</span></span
+                  >`;
+  }
   if (p.compravel) {
     return `<a
                     class="btn btn--primary${bloco ? ' btn--block' : ''} produto-oferta"
@@ -121,10 +128,16 @@ export function cardProduto(p, ctx, { nivel = 3 } = {}) {
                 <h${nivel} class="produto-card__titulo"><a href="${esc(p.url)}">${esc(p.title)}</a></h${nivel}>
                 ${p.short_description ? `<p class="card__text">${esc(p.short_description)}</p>` : ''}${blocoPreco(p)}${blocoAvaliacao(p)}
                 <div class="produto-card__footer">
-                  ${acaoComercial(p)}
+                  ${acaoComercial(p, { demonstracao: ctx.demonstracao })}
                 </div>
               </div>
             </article>`;
+}
+
+/** Faixa de aviso exibida em todas as páginas no modo demonstração. */
+function faixaDemonstracao(ctx) {
+  if (!ctx.demonstracao) return '';
+  return `<p class="loja-demo" role="note"><strong>Demonstração:</strong> produtos, preços e avaliações fictícios, só para visualizar o layout. Os botões não levam a nenhuma oferta.</p>`;
 }
 
 /** Trilha de navegação visível (o JSON-LD equivalente é gerado à parte). */
@@ -319,7 +332,7 @@ export function paginaLoja(catalogo, ctx) {
   const { site, config } = ctx;
   const compraveis = catalogo.produtos.filter((p) => p.compravel);
   // Sem nenhuma oferta real, a loja não deve aparecer no Google.
-  const indexavel = compraveis.length > 0;
+  const indexavel = !ctx.demonstracao && compraveis.length > 0;
   const migalhas = [
     { nome: 'Início', url: '/' },
     { nome: config.nome, url: config.caminho },
@@ -343,6 +356,7 @@ export function paginaLoja(catalogo, ctx) {
       <section class="hero loja-hero" aria-labelledby="loja-title">
         <div class="container hero__grid">
           <div>
+            ${faixaDemonstracao(ctx)}
             ${breadcrumb(migalhas)}
             <h1 class="hero__title" id="loja-title">
               <span class="section__eyebrow hero__kicker">Loja · Giovanella Escola Estética Animal</span>
@@ -438,7 +452,7 @@ ${faixaEscola()}`;
     },
     { ...breadcrumbJsonLd(migalhas, site.url), '@id': `${urlLoja}#breadcrumb` },
   ];
-  if (compraveis.length) {
+  if (indexavel) {
     dados.push({
       '@type': 'ItemList',
       name: 'Produtos da loja',
@@ -511,13 +525,16 @@ export function paginaProduto(p, ctx) {
               ${p.paragrafos.map((t) => `<p>${esc(t)}</p>`).join('\n              ')}`
     : '';
 
-  const redirecionamento = p.compravel
+  const redirecionamento = p.compravel && ctx.demonstracao
+    ? 'Demonstração: em produção, este botão leva à oferta na plataforma parceira.'
+    : p.compravel
     ? `Ao clicar, você vai para o ${esc(p.marketplace.nome)}. A compra, o pagamento, a entrega e as trocas são feitos lá, conforme as condições da plataforma.`
     : `Este produto ainda não tem oferta disponível na loja.`;
 
   const corpo = `
       <section class="section loja-produto" aria-labelledby="produto-title">
         <div class="container">
+          ${faixaDemonstracao(ctx)}
           ${breadcrumb(migalhas)}
           <div class="loja-produto__grid">
             <div class="loja-produto__fotos">
@@ -533,7 +550,7 @@ export function paginaProduto(p, ctx) {
               <h1 id="produto-title" class="loja-produto__titulo">${esc(p.title)}</h1>
               ${p.short_description ? `<p class="loja-produto__lead">${esc(p.short_description)}</p>` : ''}${blocoPreco(p)}${blocoAvaliacao(p)}
               <div class="loja-produto__acao">
-                ${acaoComercial(p, { bloco: false })}
+                ${acaoComercial(p, { bloco: false, demonstracao: ctx.demonstracao })}
                 <p class="loja-produto__redirecionamento">${redirecionamento}</p>
               </div>
               <p class="loja-aviso">${esc(config.avisoAfiliados)}</p>
@@ -569,7 +586,7 @@ ${faixaEscola()}`;
       descricao: resumo(p),
       caminho: p.url,
       // Produto sem oferta real não vai para o Google.
-      indexavel: p.compravel,
+      indexavel: !ctx.demonstracao && p.compravel,
       imagemSocial: info
         ? { url: `${site.url}${p.imagem.src}`, alt: p.imagem.alt, width: info.width, height: info.height }
         : undefined,
@@ -604,6 +621,7 @@ export function secaoDestaques(catalogo, ctx) {
               ou na Shopee.
             </p>
           </div>
+          ${faixaDemonstracao(ctx)}
           <div class="grid loja-grid">${destaques.map((p) => cardProduto(p, ctx, { nivel: 3 })).join('')}
           </div>
           <p class="loja-destaques__acoes">

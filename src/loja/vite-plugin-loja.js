@@ -61,6 +61,24 @@ async function medirImagens(raiz, produtos, avisos) {
   return medidas;
 }
 
+/**
+ * Trava do modo demonstração: na Vercel, se o domínio de produção do projeto
+ * já for o domínio oficial da escola, o build para. Produtos fictícios nunca
+ * chegam ao site oficial, mesmo se alguém esquecer de desligar o modo.
+ * (VERCEL_PROJECT_PRODUCTION_URL é definida pela própria Vercel.)
+ */
+export function recusarDemonstracaoNoDominioOficial(siteUrl) {
+  const oficial = new URL(siteUrl).hostname.replace(/^www\./, '').split('.')[0];
+  const producao = (process.env.VERCEL_PROJECT_PRODUCTION_URL || '').toLowerCase();
+  if (process.env.VERCEL && producao.includes(oficial)) {
+    throw new Error(
+      `[loja] O modo demonstração (produtos fictícios) está ligado, mas o projeto já responde em ${producao}. ` +
+        'Mude "demonstracao" para false em src/loja/config.js antes de publicar no domínio oficial.'
+    );
+  }
+  console.warn('\x1b[33m[loja] MODO DEMONSTRAÇÃO ligado: produtos fictícios, sem links, fora do Google.\x1b[0m');
+}
+
 /** Lê os dados, valida e devolve tudo o que a geração precisa. */
 async function carregar(raiz) {
   const variavelTeste = process.env.LOJA_PRODUTOS || process.env.LOJA_HOJE;
@@ -71,14 +89,26 @@ async function carregar(raiz) {
   const pasta = join(raiz, 'src', 'loja');
   const { LOJA, MARKETPLACES } = await importarFresco(join(pasta, 'config.js'));
   const { CATEGORIAS } = await importarFresco(join(pasta, 'categorias.js'));
-  const arquivoProdutos = process.env.LOJA_PRODUTOS ? resolve(raiz, process.env.LOJA_PRODUTOS) : join(pasta, 'produtos.js');
-  const { PRODUTOS } = await importarFresco(arquivoProdutos);
   const { SITE } = await importarFresco(join(raiz, 'src', 'js', 'config', 'site.config.js'));
+
+  // Modo demonstração (config.js). Os testes, que trazem o próprio catálogo
+  // por LOJA_PRODUTOS, sempre rodam no modo normal.
+  const demonstracao = LOJA.demonstracao === true && !process.env.LOJA_PRODUTOS;
+  if (demonstracao) recusarDemonstracaoNoDominioOficial(SITE.siteUrl);
+
+  const arquivoProdutos = process.env.LOJA_PRODUTOS
+    ? resolve(raiz, process.env.LOJA_PRODUTOS)
+    : join(pasta, demonstracao ? 'produtos-demonstracao.js' : 'produtos.js');
+  const { PRODUTOS } = await importarFresco(arquivoProdutos);
+  // Na demonstração, as notas fictícias aparecem para mostrar o layout completo.
+  const marketplaces = demonstracao
+    ? Object.fromEntries(Object.entries(MARKETPLACES).map(([id, m]) => [id, { ...m, exibirAvaliacoes: true }]))
+    : MARKETPLACES;
 
   const hoje = process.env.LOJA_HOJE ? lerData(process.env.LOJA_HOJE) : new Date();
   if (!hoje) throw new Error('[loja] LOJA_HOJE inválida (use AAAA-MM-DD).');
 
-  const catalogo = montarCatalogo({ produtos: PRODUTOS, categorias: CATEGORIAS, marketplaces: MARKETPLACES, config: LOJA, hoje });
+  const catalogo = montarCatalogo({ produtos: PRODUTOS, categorias: CATEGORIAS, marketplaces, config: LOJA, hoje });
   if (catalogo.erros.length) {
     throw new Error(
       `[loja] O catálogo tem ${catalogo.erros.length} erro(s) — nada foi publicado:\n  - ${catalogo.erros.join('\n  - ')}\n` +
@@ -91,6 +121,7 @@ async function carregar(raiz) {
   const ctx = {
     site,
     config: LOJA,
+    demonstracao,
     layout: extrairLayout(readFileSync(join(raiz, 'index.html'), 'utf8'), LOJA),
     infoImagem: (src) => medidas.get(src) || null,
     imagemSocialPadrao: {
@@ -139,7 +170,7 @@ function gravarPaginas(raiz, { catalogo, ctx }) {
 /** Páginas que vão para o sitemap: só as que têm oferta real. */
 function urlsIndexaveis({ catalogo, ctx, hoje }) {
   const compraveis = catalogo.produtos.filter((p) => p.compravel);
-  if (!compraveis.length) return [];
+  if (!compraveis.length || ctx.demonstracao) return [];
   const dia = (d) => d.toISOString().slice(0, 10);
   return [
     { loc: `${ctx.site.url}${ctx.config.caminho}`, lastmod: dia(hoje), prioridade: '0.6' },

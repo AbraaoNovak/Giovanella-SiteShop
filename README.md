@@ -545,6 +545,7 @@ mobile, título da seção e footer acompanham. (O `id="patriocinio"` da seção
 - [ ] Confirmar nos termos se fotos e notas dos anúncios podem ser exibidas
 - [ ] Conferir os domínios do primeiro link real de cada programa (config.js)
 - [ ] Cadastrar os primeiros produtos (AFFILIATE_CONFIGURATION.md)
+- [ ] Desligar o modo demonstração (`demonstracao: false`)
 
 ## 21. Segurança
 
@@ -642,6 +643,10 @@ compra, o pagamento e a entrega são da plataforma.
 - **Segurança:** links só de domínios oficiais (HTTPS), validados no build;
   `rel="sponsored nofollow noopener noreferrer"`; texto do catálogo sempre
   escapado; fotos só do próprio site (a CSP não mudou).
+- **Modo demonstração (ligado):** 12 produtos fictícios para visualizar o
+  layout no `vercel.app`, com faixa de aviso e botões sem link. Desligar em
+  `src/loja/config.js` → `demonstracao: false` (guia, seção 13). O build é
+  recusado se o projeto já estiver no domínio oficial com o modo ligado.
 - **Endereços:** `/loja/` e `/loja/<slug>/`; `/shop` redireciona (308) para
   `/loja/` (vercel.json).
 

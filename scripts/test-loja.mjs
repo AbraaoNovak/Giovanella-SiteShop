@@ -12,6 +12,8 @@ import { LOJA, MARKETPLACES } from '../src/loja/config.js';
 import { CATEGORIAS } from '../src/loja/categorias.js';
 import { PRODUTOS as PRODUTOS_REAIS } from '../src/loja/produtos.js';
 import { PRODUTOS as EXEMPLO } from './fixtures/produtos-exemplo.js';
+import { PRODUTOS as DEMONSTRACAO } from '../src/loja/produtos-demonstracao.js';
+import { recusarDemonstracaoNoDominioOficial } from '../src/loja/vite-plugin-loja.js';
 
 let falhas = 0;
 const check = (nome, ok, detalhe = '') => {
@@ -185,6 +187,50 @@ check('foto existente: <picture> com WebP e width/height', /<picture><source typ
 const destaques = secaoDestaques(ex, ctx());
 check('home: só destaques compráveis (2 de 3 marcados)', (destaques.match(/data-loja-produto/g) || []).length === 2);
 check('home: sem destaques, nada é inserido', secaoDestaques(montar([]), ctx()) === '');
+
+/* ---------------------------------------------------------------------------
+   Modo demonstração (produtos fictícios)
+   --------------------------------------------------------------------------- */
+const demo = montar(DEMONSTRACAO, {
+  marketplaces: Object.fromEntries(Object.entries(MARKETPLACES).map(([id, m]) => [id, { ...m, exibirAvaliacoes: true }])),
+  hoje: new Date(),
+});
+check('demonstração: catálogo fictício sem erros', demo.erros.length === 0, demo.erros.join(' | '));
+check('demonstração: cobre as 6 categorias', demo.categorias.length === 6);
+const ctxDemo = { ...ctx(), demonstracao: true };
+const htmlDemo = paginaLoja(demo, ctxDemo);
+check('demonstração: nenhum link de oferta (só botões sem href)',
+  !/<a\b[^>]*produto-oferta/.test(htmlDemo) &&
+  (htmlDemo.match(/produto-oferta--demo/g) || []).length === demo.produtos.filter((p) => p.compravel).length);
+check('demonstração: nenhum endereço de plataforma no HTML', !/mercadolivre\.com\/sec|s\.shopee\.com\.br/.test(htmlDemo));
+check('demonstração: faixa de aviso, noindex e sem ItemList',
+  htmlDemo.includes('class="loja-demo"') && htmlDemo.includes('content="noindex, follow"') && !htmlDemo.includes('ItemList'));
+const produtoDemo = paginaProduto(demo.produtos[0], ctxDemo);
+check('demonstração: página de produto com aviso e noindex', produtoDemo.includes('class="loja-demo"') && produtoDemo.includes('noindex'));
+check('demonstração: destaques da home com aviso', secaoDestaques(demo, ctxDemo).includes('class="loja-demo"'));
+
+// Trava: produtos fictícios nunca no domínio oficial.
+const ambiente = { ...process.env };
+const tentar = (vars) => {
+  Object.assign(process.env, vars);
+  const aviso = console.warn;
+  console.warn = () => {};
+  try {
+    recusarDemonstracaoNoDominioOficial('https://www.escolabanhoetosarosigiovanella.com.br');
+    return 'passou';
+  } catch {
+    return 'recusou';
+  } finally {
+    console.warn = aviso;
+    process.env = { ...ambiente };
+  }
+};
+check('trava: recusa na Vercel com o domínio oficial (.com.br)',
+  tentar({ VERCEL: '1', VERCEL_PROJECT_PRODUCTION_URL: 'www.escolabanhoetosarosigiovanella.com.br' }) === 'recusou');
+check('trava: recusa com o domínio antigo (.com)',
+  tentar({ VERCEL: '1', VERCEL_PROJECT_PRODUCTION_URL: 'escolabanhoetosarosigiovanella.com' }) === 'recusou');
+check('trava: aceita no endereço vercel.app',
+  tentar({ VERCEL: '1', VERCEL_PROJECT_PRODUCTION_URL: 'giovanella-site-shop.vercel.app' }) === 'passou');
 
 console.log(falhas === 0 ? '\nTodos os testes da loja passaram.' : `\n${falhas} teste(s) falharam.`);
 process.exit(falhas === 0 ? 0 : 1);

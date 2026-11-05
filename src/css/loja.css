@@ -302,6 +302,25 @@ a.tag:hover {
   text-align: center;
 }
 
+/* ---------- Modo demonstração (produtos fictícios) ---------- */
+.loja-demo {
+  margin-bottom: var(--space-sm);
+  padding: 0.6rem 1rem;
+  border: 1.5px dashed var(--color-gold);
+  border-radius: var(--radius-md);
+  background: rgba(198, 154, 75, 0.12);
+  font-size: var(--step--1);
+  color: var(--color-text);
+}
+
+.produto-oferta--demo {
+  cursor: default;
+}
+
+.produto-oferta--demo:hover {
+  transform: none;
+}
+
 /* ---------- Estados vazios ---------- */
 .loja-em-breve,
 .loja-vazio {
@@ -468,7 +487,7 @@ a.tag:hover {
 
 /* Poucos destaques (1 a 3) ficam centralizados, como o resto da seção. */
 .loja-destaques .loja-grid {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 285px));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 260px));
   justify-content: center;
 }
 

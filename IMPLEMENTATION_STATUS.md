@@ -68,6 +68,7 @@ detalhamento está em [docs/IDENTIDADE_VISUAL_LOJA.md](docs/IDENTIDADE_VISUAL_LO
 | Redirecionamento `/shop` → `/loja/` | Implementado | `vercel.json` |
 | Integração por API dos programas | **Pendente** | depende de aprovação e credenciais (seção 4) |
 | Produtos reais | **Pendente** | depende do cadastro nos programas |
+| Modo demonstração: 12 produtos fictícios no `vercel.app`, com faixa de aviso, botões sem link, `noindex` e trava contra o domínio oficial | **Simulado** (ligado) | `config.js → demonstracao`, `produtos-demonstracao.js` |
 | Produtos com links e preços | **Simulado** | só em `scripts/fixtures/produtos-exemplo.js`, usado nos testes. O plugin recusa esse arquivo na Vercel |
 
 ### Decisões que merecem registro
@@ -134,6 +135,9 @@ home.
 
 ## 4. Pendências que dependem da cliente
 
+0. **Desligar o modo demonstração** (`demonstracao: false` em `src/loja/config.js`) ao
+   cadastrar os produtos reais. Se esquecer, o build no domínio oficial é
+   recusado (trava automática).
 1. **Cadastro e aprovação** no Programa de Afiliados do Mercado Livre e da
    Shopee (status: `AGUARDANDO_CADASTRO`).
 2. **Primeiros produtos**: lista, links gerados no painel e fotos.
